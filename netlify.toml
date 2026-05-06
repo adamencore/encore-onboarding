@@ -1,0 +1,6 @@
+# Netlify configuration
+# Tells Netlify where to find the site files and the backend functions
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
