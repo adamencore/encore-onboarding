@@ -118,10 +118,8 @@
   .commandments-list .cmd-body { font-size: 14.5px; font-weight: 400; color: var(--cream-dark); }
 
   /* ---------- IMPORTANT DATES ---------- */
-  .calendar-embed { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; margin: 20px 0 32px; overflow: hidden; height: 380px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--guava-soft); text-align: center; }
-  .calendar-embed-placeholder { padding: 30px; }
-  .calendar-embed-placeholder strong { display: block; font-size: 18px; font-weight: 700; color: var(--guava); margin-bottom: 8px; letter-spacing: -0.01em; }
-  .calendar-embed-placeholder span { font-size: 13.5px; font-weight: 400; line-height: 1.55; max-width: 380px; display: block; }
+  .calendar-embed { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; margin: 20px 0 32px; overflow: hidden; height: 520px; }
+  .calendar-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
 
   .dates-list { list-style: none; padding: 0; margin: 0; }
   .date-item { border: 1px solid var(--line); border-radius: 6px; background: var(--cream); margin-bottom: 12px; overflow: hidden; transition: border-color 0.15s; }
@@ -260,6 +258,7 @@
     .checklist-cta { flex-direction: column; align-items: flex-start; }
     .lightbox-bg { padding: 0; }
     .lightbox-frame { border-radius: 0; height: 100vh; max-height: 100vh; }
+    .calendar-embed { height: 440px; }
   }
 </style>
 </head>
@@ -347,10 +346,7 @@
       <p>Your live production calendar and the things coming up that need your attention. Open any date to see exactly what to prepare.</p>
 
       <div class="calendar-embed">
-        <div class="calendar-embed-placeholder">
-          <strong>Google Calendar Embed</strong>
-          <span>Once we wire this to Encore's production calendar, this area will show your live monthly view — every rehearsal, production meeting, and milestone for The Lion King.</span>
-        </div>
+        <iframe src="https://calendar.google.com/calendar/embed?src=hello%40encorepa.org&ctz=America%2FDenver" frameborder="0" scrolling="no" title="Encore Production Calendar"></iframe>
       </div>
 
       <h3 style="margin-top: 0; margin-bottom: 18px;">Coming up next</h3>
