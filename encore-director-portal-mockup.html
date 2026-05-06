@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Welcome to Encore, Sarah — Director, The Lion King</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F4EFE6;
+    --cream-light: #FBF8F0;
+    --cream-dark: #E8E0CD;
+    --guava: #1F3540;
+    --guava-soft: #4A5C68;
+    --guava-muted: #7E8C95;
+    --line: #DDD2BA;
+    --berry: #387E7F;
+    --berry-dark: #2D6566;
+    --lemon: #F7B73D;
+    --green: #4F8A4A;
+    --plum: #6B3D5C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream); color: var(--guava);
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar { background: var(--guava); color: var(--cream-light); padding: 14px 0; border-bottom: 4px solid var(--berry); }
+  .topbar-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+  .brand-wrap { display: flex; align-items: center; gap: 16px; }
+  .brand-logo { height: 26px; width: auto; color: var(--cream-light); display: block; }
+  .brand-logo svg { height: 100%; width: auto; display: block; }
+  .brand-logo svg path { fill: currentColor; }
+  .brand-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.2); }
+  .brand-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--cream-dark); }
+  .topbar-meta { font-size: 13px; color: var(--cream-dark); font-weight: 500; }
+  .topbar-meta strong { color: var(--cream-light); font-weight: 700; }
+
+  /* ---------- HERO ---------- */
+  .hero { background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%); padding: 80px 0 70px; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(56,126,127,0.14) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--berry); margin-bottom: 18px; }
+  .hero-title { font-size: clamp(44px, 7vw, 72px); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 18px; color: var(--guava); }
+  .hero-title em { font-style: normal; color: var(--berry); }
+  .hero-tagline { font-size: 17px; font-weight: 600; color: var(--berry); margin-bottom: 22px; letter-spacing: -0.005em; }
+  .hero-subtitle { font-size: 17px; font-weight: 400; color: var(--guava-soft); max-width: 640px; line-height: 1.55; margin-bottom: 36px; }
+  .hero-show-card { display: inline-flex; align-items: center; gap: 16px; background: var(--cream-light); padding: 14px 24px; border: 1px solid var(--line); border-radius: 6px; }
+  .hero-show-poster { width: 48px; height: 64px; background: linear-gradient(135deg, var(--plum) 0%, var(--guava) 100%); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: var(--lemon); font-size: 22px; font-weight: 800; }
+  .hero-show-info .label { text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: var(--guava-muted); font-weight: 700; margin-bottom: 3px; }
+  .hero-show-info .name { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--guava); }
+  .hero-show-info .dates { color: var(--guava-soft); font-size: 13px; font-weight: 500; }
+
+  /* ---------- LAYOUT ---------- */
+  .layout { max-width: 1180px; margin: 0 auto; padding: 50px 32px 100px; display: grid; grid-template-columns: 260px 1fr; gap: 50px; align-items: start; }
+  .sidebar { position: sticky; top: 24px; }
+  .sidebar-block { background: var(--cream-light); border: 1px solid var(--line); border-radius: 8px; padding: 22px; margin-bottom: 20px; }
+  .sidebar-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); margin-bottom: 14px; }
+
+  .quicklinks { list-style: none; }
+  .quicklinks li { border-top: 1px solid var(--line); }
+  .quicklinks li:first-child { border-top: none; }
+  .quicklinks a { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; color: var(--guava); text-decoration: none; font-size: 13.5px; font-weight: 600; transition: color 0.12s; }
+  .quicklinks a:hover { color: var(--berry); }
+  .quicklinks .arrow { color: var(--guava-muted); font-size: 13px; font-weight: 500; }
+  .quicklinks a:hover .arrow { color: var(--berry); }
+
+  .progress-bar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+  .progress-bar-fill { height: 100%; width: 28%; background: var(--berry); border-radius: 2px; transition: width 0.3s; }
+  .progress-count { font-size: 13px; color: var(--guava-soft); font-weight: 500; margin-bottom: 18px; font-variant-numeric: tabular-nums; }
+  .progress-list { list-style: none; }
+  .progress-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); cursor: pointer; text-decoration: none; color: var(--guava); transition: padding-left 0.15s; }
+  .progress-item:hover { padding-left: 4px; }
+  .progress-item:last-child { border-bottom: none; }
+  .check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--cream-light); margin-top: 2px; transition: all 0.2s; font-weight: 700; }
+  .check.done { background: var(--green); border-color: var(--green); }
+  .check.active { border-color: var(--berry); border-width: 2px; }
+  .progress-label { font-size: 13.5px; font-weight: 600; line-height: 1.35; }
+  .progress-label .sub { display: block; font-size: 10px; font-weight: 600; color: var(--guava-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ---------- MAIN ---------- */
+  .main { min-width: 0; }
+  .section { background: var(--cream-light); border: 1px solid var(--line); border-radius: 8px; padding: 44px 48px; margin-bottom: 24px; scroll-margin-top: 24px; }
+  .section-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--berry); margin-bottom: 14px; }
+  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.05; margin-bottom: 24px; color: var(--guava); letter-spacing: -0.02em; }
+  .section p { margin-bottom: 1rem; color: var(--guava-soft); font-size: 15px; font-weight: 400; line-height: 1.6; }
+  .section p:last-child { margin-bottom: 0; }
+  .section h3 { font-size: 20px; font-weight: 700; margin: 1.8rem 0 0.6rem; color: var(--guava); letter-spacing: -0.01em; }
+
+  .section ul.bulleted { margin: 1rem 0; padding-left: 0; list-style: none; }
+  .section ul.bulleted li { position: relative; padding-left: 24px; margin-bottom: 8px; color: var(--guava-soft); font-size: 15px; line-height: 1.55; }
+  .section ul.bulleted li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; background: var(--berry); border-radius: 50%; }
+
+  /* Three Action Principles cards */
+  .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0 8px; }
+  .principle-card { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; padding: 22px; }
+  .principle-card .num { font-size: 20px; font-weight: 800; color: var(--berry); margin-bottom: 8px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .principle-card h4 { font-size: 17px; font-weight: 700; color: var(--guava); margin-bottom: 8px; line-height: 1.25; letter-spacing: -0.01em; }
+  .principle-card p { font-size: 13.5px; font-weight: 400; color: var(--guava-soft); line-height: 1.5; margin: 0; }
+
+  .commandments { background: var(--guava); color: var(--cream-light); border: none; }
+  .commandments .section-eyebrow { color: var(--lemon); }
+  .commandments .section-title { color: var(--cream-light); }
+  .commandments-list { counter-reset: commandment; list-style: none; margin: 24px 0 0; padding: 0; }
+  .commandments-list li { counter-increment: commandment; padding: 22px 0 22px 64px; position: relative; border-top: 1px solid rgba(255,255,255,0.1); color: var(--cream-dark); line-height: 1.5; }
+  .commandments-list li::before { content: counter(commandment, decimal-leading-zero); position: absolute; left: 0; top: 22px; font-size: 18px; font-weight: 800; color: var(--lemon); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .commandments-list .cmd-title { font-size: 17px; font-weight: 700; color: var(--cream-light); display: block; margin-bottom: 4px; line-height: 1.3; letter-spacing: -0.01em; }
+  .commandments-list .cmd-body { font-size: 14.5px; font-weight: 400; color: var(--cream-dark); }
+
+  /* ---------- IMPORTANT DATES ---------- */
+  .calendar-embed { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; margin: 20px 0 32px; overflow: hidden; height: 380px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--guava-soft); text-align: center; }
+  .calendar-embed-placeholder { padding: 30px; }
+  .calendar-embed-placeholder strong { display: block; font-size: 18px; font-weight: 700; color: var(--guava); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .calendar-embed-placeholder span { font-size: 13.5px; font-weight: 400; line-height: 1.55; max-width: 380px; display: block; }
+
+  .dates-list { list-style: none; padding: 0; margin: 0; }
+  .date-item { border: 1px solid var(--line); border-radius: 6px; background: var(--cream); margin-bottom: 12px; overflow: hidden; transition: border-color 0.15s; }
+  .date-item:hover { border-color: var(--berry); }
+  .date-item summary { padding: 18px 22px; cursor: pointer; display: flex; align-items: center; gap: 22px; list-style: none; user-select: none; }
+  .date-item summary::-webkit-details-marker { display: none; }
+  .date-block { flex-shrink: 0; width: 64px; text-align: center; border-right: 1px solid var(--line); padding-right: 22px; font-variant-numeric: tabular-nums; }
+  .date-block .month { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--berry); }
+  .date-block .day { font-size: 28px; font-weight: 800; line-height: 1; color: var(--guava); margin-top: 2px; letter-spacing: -0.03em; }
+  .date-info { flex: 1; }
+  .date-info .event { font-size: 17px; font-weight: 700; color: var(--guava); line-height: 1.2; margin-bottom: 3px; letter-spacing: -0.01em; }
+  .date-info .meta { font-size: 12.5px; font-weight: 500; color: var(--guava-muted); }
+  .date-toggle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--berry); flex-shrink: 0; }
+  .date-item[open] .date-toggle::after { content: ' ▴'; }
+  .date-item:not([open]) .date-toggle::after { content: ' ▾'; }
+  .date-prep { padding: 20px 22px 22px 108px; border-top: 1px solid var(--line); background: var(--cream-light); }
+  .date-prep h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); margin-bottom: 12px; }
+  .date-prep ul { list-style: none; padding: 0; margin: 0; }
+  .date-prep li { padding: 6px 0 6px 24px; position: relative; font-size: 14px; font-weight: 500; color: var(--guava); line-height: 1.55; }
+  .date-prep li::before { content: '✓'; position: absolute; left: 0; top: 6px; color: var(--berry); font-weight: 800; }
+
+  /* ---------- TASK / SUBMIT ---------- */
+  .task-block { background: var(--cream-light); border-left: 3px solid var(--berry); padding: 24px 28px; margin-top: 24px; border-radius: 0 6px 6px 0; }
+  .task-status { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; padding: 4px 10px; border-radius: 100px; background: var(--berry); color: var(--cream-light); margin-bottom: 12px; }
+
+  .form-group { margin-bottom: 20px; }
+  .form-label { display: block; font-size: 11px; font-weight: 700; margin-bottom: 8px; color: var(--guava); text-transform: uppercase; letter-spacing: 0.1em; }
+  .form-input, .form-textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--line); background: var(--cream); border-radius: 6px; font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 400; color: var(--guava); outline: none; transition: border-color 0.15s; line-height: 1.5; }
+  .form-input:focus, .form-textarea:focus { border-color: var(--berry); }
+  .form-textarea { min-height: 140px; resize: vertical; }
+  .form-help { font-size: 12.5px; font-weight: 500; color: var(--guava-muted); margin-top: 6px; line-height: 1.5; }
+
+  .upload-area { border: 2px dashed var(--line); background: var(--cream); padding: 36px; text-align: center; border-radius: 6px; cursor: pointer; transition: all 0.15s; }
+  .upload-area:hover { border-color: var(--berry); background: var(--cream-dark); }
+  .upload-icon { font-size: 36px; font-weight: 300; color: var(--berry); margin-bottom: 4px; line-height: 1; }
+  .upload-text { font-size: 14px; font-weight: 600; color: var(--guava-soft); margin-bottom: 4px; }
+  .upload-hint { font-size: 12px; font-weight: 500; color: var(--guava-muted); }
+
+  .btn { display: inline-block; background: var(--berry); color: var(--cream-light); padding: 12px 28px; border: none; border-radius: 6px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; letter-spacing: 0.02em; transition: background 0.15s; }
+  .btn:hover { background: var(--berry-dark); }
+  .btn-secondary { background: transparent; color: var(--guava); border: 1px solid var(--guava); }
+  .btn-secondary:hover { background: var(--guava); color: var(--cream-light); }
+
+  .info-card { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; padding: 28px; display: flex; gap: 24px; align-items: center; margin-top: 20px; flex-wrap: wrap; }
+  .info-icon { width: 64px; height: 64px; background: var(--berry); color: var(--cream-light); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; flex-shrink: 0; }
+  .info-icon.green { background: var(--green); }
+  .info-icon.slate { background: var(--guava); }
+  .info-text { flex: 1; min-width: 200px; }
+  .info-text h4 { font-size: 18px; font-weight: 700; margin-bottom: 4px; color: var(--guava); letter-spacing: -0.01em; }
+  .info-text p { font-size: 13.5px; font-weight: 400; color: var(--guava-soft); margin: 0; line-height: 1.5; }
+
+  .checkbox-row { display: flex; align-items: flex-start; gap: 12px; margin-top: 18px; padding: 16px; background: var(--cream); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+  .checkbox-row input[type="checkbox"] { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--berry); cursor: pointer; }
+  .checkbox-row label { font-size: 13.5px; font-weight: 500; color: var(--guava); cursor: pointer; line-height: 1.5; }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--guava); color: var(--cream-dark); padding: 50px 32px; text-align: center; font-size: 13.5px; font-weight: 400; }
+  footer .footer-logo { display: inline-block; height: 30px; width: auto; color: var(--cream-light); margin-bottom: 6px; }
+  footer .footer-logo svg { height: 100%; width: auto; display: block; }
+  footer .footer-logo svg path { fill: currentColor; }
+  footer .brand-footer-sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.32em; color: var(--cream-dark); margin-bottom: 14px; }
+  footer .footer-tagline { font-size: 14.5px; font-weight: 600; font-style: italic; color: var(--lemon); margin-bottom: 14px; letter-spacing: -0.005em; }
+  footer a { color: var(--lemon); text-decoration: none; font-weight: 600; }
+  footer a:hover { text-decoration: underline; }
+  footer .footer-fineprint { margin-top: 18px; opacity: 0.6; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* ---------- ROLE: QUALITIES GRID ---------- */
+  .qualities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 18px 0 8px; }
+  .quality-card { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; }
+  .quality-card h4 { font-size: 15px; font-weight: 700; color: var(--berry); margin-bottom: 6px; letter-spacing: -0.005em; }
+  .quality-card p { font-size: 13.5px; font-weight: 400; color: var(--guava-soft); line-height: 1.5; margin: 0; }
+
+  /* ---------- ROLE: BULLETED DETAIL VARIANT ---------- */
+  ul.bulleted.detail li { padding-left: 22px; margin-bottom: 12px; line-height: 1.55; font-size: 14.5px; }
+  ul.bulleted.detail li strong { color: var(--guava); font-weight: 700; display: inline; }
+
+  /* ---------- PRODUCTION PHASES ACCORDION ---------- */
+  .phases-list { list-style: none; padding: 0; margin: 16px 0 0; }
+  .phase-item { border: 1px solid var(--line); border-radius: 6px; background: var(--cream); margin-bottom: 10px; overflow: hidden; transition: border-color 0.15s; }
+  .phase-item:hover { border-color: var(--berry); }
+  .phase-item summary { padding: 14px 18px; cursor: pointer; display: flex; align-items: center; gap: 14px; list-style: none; user-select: none; }
+  .phase-item summary::-webkit-details-marker { display: none; }
+  .phase-num { font-size: 14px; font-weight: 800; color: var(--berry); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; min-width: 26px; }
+  .phase-name { flex: 1; font-size: 16px; font-weight: 700; color: var(--guava); letter-spacing: -0.01em; }
+  .phase-toggle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--berry); }
+  .phase-item[open] .phase-toggle::after { content: ' ▴'; }
+  .phase-item:not([open]) .phase-toggle::after { content: ' ▾'; }
+  .phase-content { padding: 16px 22px 22px; border-top: 1px solid var(--line); background: var(--cream-light); }
+  .phase-content p { font-size: 14.5px; line-height: 1.55; margin-bottom: 10px; color: var(--guava-soft); font-weight: 400; }
+  .phase-content p strong { color: var(--guava); font-weight: 700; }
+  .phase-content h5 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); margin: 14px 0 8px; }
+  .phase-content h5:first-child { margin-top: 4px; }
+  .phase-content ul.bulleted { margin: 0 0 10px 0; }
+  .phase-content ul.bulleted li { font-size: 14px; color: var(--guava-soft); padding-left: 20px; margin-bottom: 5px; }
+  .phase-content ul.bulleted li::before { width: 5px; height: 5px; top: 10px; }
+
+  /* ---------- CHECKLIST ---------- */
+  ul.checklist { list-style: none; padding: 0; margin: 0 0 6px; }
+  ul.checklist li { padding: 0; margin-bottom: 2px; }
+  ul.checklist label { display: flex; align-items: flex-start; gap: 10px; padding: 7px 10px; border-radius: 4px; cursor: pointer; font-size: 14px; color: var(--guava); line-height: 1.5; transition: background 0.1s; font-weight: 500; }
+  ul.checklist label:hover { background: var(--cream); }
+  ul.checklist label:has(input:checked) { color: var(--guava-muted); text-decoration: line-through; text-decoration-thickness: 1px; text-decoration-color: var(--guava-muted); }
+  ul.checklist input[type="checkbox"] { margin-top: 3px; width: 15px; height: 15px; accent-color: var(--berry); cursor: pointer; flex-shrink: 0; }
+  .checklist-progress { color: var(--guava-soft); font-weight: 500; letter-spacing: 0.05em; font-variant-numeric: tabular-nums; font-size: 11px; }
+
+  /* ---------- ROLE: CHECKLIST CTA ---------- */
+  .checklist-cta { background: var(--cream); border: 1px solid var(--berry); border-radius: 6px; padding: 20px 26px; margin-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .checklist-cta-text { flex: 1; min-width: 200px; }
+  .checklist-cta-text strong { display: block; font-size: 16px; font-weight: 700; color: var(--guava); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .checklist-cta-text p { font-size: 13.5px; color: var(--guava-soft); margin: 0; line-height: 1.5; }
+
+  /* ---------- TRAINING LIGHTBOX ---------- */
+  .lightbox-bg { position: fixed; inset: 0; background: rgba(20, 47, 55, 0.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 24px; animation: lb-fade 0.2s ease; }
+  .lightbox-bg.open { display: flex; }
+  @keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+  .lightbox-frame { background: var(--cream); border-radius: 12px; width: 100%; max-width: 1100px; height: calc(100vh - 48px); max-height: 920px; position: relative; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.45); animation: lb-slide 0.3s ease; }
+  @keyframes lb-slide { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .lightbox-close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.95); color: var(--guava); border: none; font-size: 18px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.2); transition: all 0.15s; line-height: 1; padding: 0; }
+  .lightbox-close:hover { background: white; color: var(--berry); transform: scale(1.05); }
+  .lightbox-iframe { width: 100%; height: 100%; border: none; display: block; background: #142f37; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px) {
+    .layout { grid-template-columns: 1fr; gap: 30px; padding: 30px 22px 80px; }
+    .sidebar { position: static; }
+    .hero { padding: 50px 0; }
+    .section { padding: 32px 26px; }
+    .topbar-inner { padding: 0 22px; }
+    .commandments-list li { padding-left: 52px; }
+    .date-item summary { flex-wrap: wrap; gap: 14px; padding: 16px; }
+    .date-block { padding-right: 16px; width: 56px; }
+    .date-prep { padding: 16px; }
+    .info-card { flex-direction: column; align-items: flex-start; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .qualities-grid { grid-template-columns: 1fr; }
+    .checklist-cta { flex-direction: column; align-items: flex-start; }
+    .lightbox-bg { padding: 0; }
+    .lightbox-frame { border-radius: 0; height: 100vh; max-height: 100vh; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-wrap">
+      <div class="brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3645.525 744.452" aria-label="Encore">
+          <path d="M3625.374,637.942c0,53.14-26.564,79.693-79.693,79.693-56.409,0-84.608-26.553-84.608-79.693s28.199-79.705,84.608-79.705c53.129,0,79.693,26.576,79.693,79.705Zm-109.548-137.771c-12.967-86.288-23.803-154.301-32.432-204.001-8.66-49.71-15.691-88.368-21.079-115.983-5.418-27.606-9.192-48.32-11.354-62.133-2.161-13.803-3.226-27.965-3.226-42.459,0-50.39,32.95-75.595,98.895-75.595s98.895,25.205,98.895,75.595c0,14.493-1.081,28.656-3.226,42.459-2.192,13.813-6.24,34.527-12.175,62.133-5.936,27.616-14.337,66.273-25.127,115.983-10.821,49.7-24.32,117.714-40.529,204.001h-48.641Z"/>
+          <path d="M217.454,529.272c29.006,85.947,143.939,188.468,316.874,34.177,10.352-9.322,25.885,3.101,19.674,14.493-33.137,63.173-108.722,157.402-263.023,157.402C131.507,735.344,0,616.26,0,469.21,0,321.13,129.446,202.046,289.949,203.086h3.111c129.436-1.04,239.199,78.696,275.436,187.428,4.151,13.463-3.101,27.956-16.564,32.106l-334.478,106.652Zm144.979-92.159c8.282-3.111,13.463-12.423,11.392-20.714-17.604-82.837-57.992-172.925-118.054-162.573-1.03,0-3.111,1.03-4.141,1.03-73.525,18.644-67.304,162.583-48.67,231.957l159.472-49.7Z"/>
+          <path d="M1250.416,730.163c-76.626,26.925-258.883,36.247-258.883-164.644v-178.116c0-32.097-13.463-92.159-79.736-98.37-52.811-4.141-100.441,50.74-100.441,97.34v244.38c0,6.211-3.111,65.243,61.093,71.454,5.181,1.03,11.392,6.211,11.392,13.463s-5.181,13.463-12.432,13.463h-318.935c-7.251,0-13.463-6.211-13.463-13.463s5.171-12.432,12.423-13.463c36.247-4.141,60.062-30.026,61.102-69.384V334.593s1.03-54.881-56.961-52.811c-9.312,0-16.564-6.211-16.564-15.533,0-7.242,5.171-13.463,12.423-14.493l259.923-40.388v65.243s47.63-66.273,162.573-65.243c106.662,2.07,216.424,68.344,216.424,178.116l-1.03,214.344c0,112.873,61.093,126.336,61.093,126.336Z"/>
+          <path d="M1794.492,546.942c-33.137,63.173-130.361,188.402-284.642,188.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.436-267.164,289.949-266.124h3.101c72.494-1.04,139.798,24.855,190.539,65.233,76.635,63.173,37.278,124.265-39.348,138.768h-3.111c-36.238,5.171-71.445-16.573-83.867-50.74-21.754-61.102-55.931-109.772-101.49-102.521-1.04,0-3.101,0-4.141,1.03-88.018,26.925-61.093,210.213-34.167,274.416,40.378,97.34,183.162,147.116,338.493,3.177,10.362-9.322,25.895,3.101,19.674,14.493Z"/>
+          <path d="M2349.66,470.25c0,151.191-131.507,273.376-290.979,273.376s-290.989-122.185-290.989-273.376,129.446-273.376,289.959-273.376h3.101c159.463,0,288.909,122.185,288.909,273.376Zm-198.82,0c0-67.314-12.432-223.675-90.088-223.675h-4.141c-77.666,0-90.098,156.362-90.098,223.675s12.432,223.675,90.098,223.675h4.141c77.656,0,90.088-156.372,90.088-223.675Z"/>
+          <path d="M2782.269,394.655c-3.101,1.04-7.242,1.04-11.392,1.04-41.409,0-74.555-33.137-74.555-74.565,0-18.634,6.221-35.207,17.613-48.67-48.68-2.07-121.164,72.494-121.164,135.657v222.635c0,6.211-3.101,65.243,61.093,72.485,7.251,0,11.392,6.221,11.392,12.432v1.03c0,7.251-5.171,12.432-12.423,12.432h-318.945c-7.251,0-13.453-5.181-13.453-13.463,0-6.211,5.171-12.432,12.423-12.432,62.133-7.242,61.093-65.233,61.093-69.374V334.593s1.04-52.811-56.952-52.811c-8.282,0-15.533-5.171-16.564-13.463-1.04-8.282,5.171-15.533,12.423-16.564l259.913-40.388v66.273s57.992-78.696,162.573-65.233c117.014,14.493,113.913,176.036,26.925,182.247Z"/>
+          <path d="M3056.694,529.272c28.996,85.947,143.939,188.468,316.865,34.177,10.362-9.322,25.895,3.101,19.684,14.493-33.137,63.173-108.732,157.402-263.023,157.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.446-267.164,289.959-266.124h3.101c129.446-1.04,239.209,78.696,275.446,187.428,4.141,13.463-3.111,27.956-16.564,32.106l-334.478,106.652Zm144.97-92.159c8.282-3.111,13.472-12.423,11.392-20.714-17.594-82.837-57.992-172.925-118.044-162.573-1.04,0-3.111,1.03-4.141,1.03-73.525,18.644-67.314,162.583-48.68,231.957l159.472-49.7Z"/>
+        </svg>
+      </div>
+      <div class="brand-divider"></div>
+      <span class="brand-tag">Director Onboarding</span>
+    </div>
+    <div class="topbar-meta"><strong>Sarah Jones</strong> · The Lion King</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Welcome to the team</div>
+    <h1 class="hero-title">Hello, <em>Sarah</em>.<br />Let's get you ready.</h1>
+    <p class="hero-tagline">We teach life skills through stage skills.</p>
+    <p class="hero-subtitle">Your home for everything you need to direct at Encore. Read through who we are and how we work, complete your required onboarding, and tell us about yourself and your vision for the show. Bookmark this page — it's yours.</p>
+    <div class="hero-show-card">
+      <div class="hero-show-poster">L</div>
+      <div class="hero-show-info">
+        <div class="label">Your Show</div>
+        <div class="name">The Lion King</div>
+        <div class="dates">Signature Show · Electric Theater</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">Quick Links</div>
+      <ul class="quicklinks">
+        <li><a href="https://encorepa.org" target="_blank">Encore Website <span class="arrow">↗</span></a></li>
+        <li><a href="#">Production Calendar (BAND) <span class="arrow">↗</span></a></li>
+        <li><a href="#">Cast &amp; Team Roster <span class="arrow">↗</span></a></li>
+        <li><a href="#">S.T.A.G.E. Curriculum <span class="arrow">↗</span></a></li>
+        <li><a href="#">Electric Theater Info <span class="arrow">↗</span></a></li>
+        <li><a href="#">Costume &amp; Props Partners <span class="arrow">↗</span></a></li>
+        <li><a href="#checklist">Director's Checklist <span class="arrow">↓</span></a></li>
+        <li><a href="#">Encore Director Handbook <span class="arrow">↗</span></a></li>
+        <li><a href="mailto:hello@encorepa.org">Questions? Email Encore <span class="arrow">✉</span></a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">Your Onboarding</div>
+      <div class="progress-bar"><div class="progress-bar-fill"></div></div>
+      <div class="progress-count">2 of 7 complete</div>
+      <ul class="progress-list">
+        <li><a class="progress-item" href="#mission"><span class="check done">✓</span><span class="progress-label">Mission &amp; Vision<span class="sub">Done</span></span></a></li>
+        <li><a class="progress-item" href="#commandments"><span class="check done">✓</span><span class="progress-label">The Ten Commandments<span class="sub">Done</span></span></a></li>
+        <li><a class="progress-item" href="#director-role"><span class="check active"></span><span class="progress-label">Your role<span class="sub">In progress</span></span></a></li>
+        <li><a class="progress-item" href="#training"><span class="check"></span><span class="progress-label">Child safety training<span class="sub">Required</span></span></a></li>
+        <li><a class="progress-item" href="#background"><span class="check"></span><span class="progress-label">Background check<span class="sub">Required</span></span></a></li>
+        <li><a class="progress-item" href="#tax"><span class="check"></span><span class="progress-label">W-9 tax form<span class="sub">Required</span></span></a></li>
+        <li><a class="progress-item" href="#submit"><span class="check"></span><span class="progress-label">Bio &amp; vision<span class="sub">Required</span></span></a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <section class="section" id="dates">
+      <div class="section-eyebrow">Look Ahead</div>
+      <h2 class="section-title">Calendar &amp; Important Dates</h2>
+      <p>Your live production calendar and the things coming up that need your attention. Open any date to see exactly what to prepare.</p>
+
+      <div class="calendar-embed">
+        <div class="calendar-embed-placeholder">
+          <strong>Google Calendar Embed</strong>
+          <span>Once we wire this to Encore's production calendar, this area will show your live monthly view — every rehearsal, production meeting, and milestone for The Lion King.</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 0; margin-bottom: 18px;">Coming up next</h3>
+
+      <div class="dates-list">
+
+        <details class="date-item" open>
+          <summary>
+            <div class="date-block"><div class="month">Mar</div><div class="day">04</div></div>
+            <div class="date-info">
+              <div class="event">Pre-Production Meeting</div>
+              <div class="meta">10:00 AM – 12:00 PM · Encore Office · 2 weeks away</div>
+            </div>
+            <div class="date-toggle">Prep</div>
+          </summary>
+          <div class="date-prep">
+            <h4>Come ready to share</h4>
+            <ul>
+              <li>Your director's vision for The Lion King — be ready to talk it through, not just read it</li>
+              <li>Initial thoughts on set design — references, mood, scale (within Electric Theater's footprint)</li>
+              <li>Costume direction — palette, period-feel, anything to flag for our partners</li>
+              <li>Props you anticipate needing, especially anything tricky to source</li>
+              <li>Casting preferences — types, vocal ranges, any non-negotiables for the principal roles</li>
+              <li>Mike &amp; Sully role clarity — confirm with Kristen who's holding technical execution and who's holding people-centered nurturing</li>
+              <li>Questions about the EFI targets for this production — Education goals, Financial frame, Impact reach</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="date-item">
+          <summary>
+            <div class="date-block"><div class="month">Mar</div><div class="day">11</div></div>
+            <div class="date-info">
+              <div class="event">Auditions — Day 1</div>
+              <div class="meta">5:00 PM – 9:00 PM · Encore Office · 3 weeks away</div>
+            </div>
+            <div class="date-toggle">Prep</div>
+          </summary>
+          <div class="date-prep">
+            <h4>Come ready to share</h4>
+            <ul>
+              <li>Audition packet (sides, songs, dance combinations) finalized with music director and choreographer</li>
+              <li>Your evaluation rubric — what you're looking for in each role</li>
+              <li>A short welcome speech for our young artists that sets the tone before they sing a note</li>
+              <li>Plan for room flow with Shannon (Senior Stage Manager) or assigned SM</li>
+              <li>Any accessibility needs flagged in advance</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="date-item">
+          <summary>
+            <div class="date-block"><div class="month">Mar</div><div class="day">14</div></div>
+            <div class="date-info">
+              <div class="event">Callbacks</div>
+              <div class="meta">6:00 PM – 9:00 PM · Encore Office</div>
+            </div>
+            <div class="date-toggle">Prep</div>
+          </summary>
+          <div class="date-prep">
+            <h4>Come ready to share</h4>
+            <ul>
+              <li>Shortlist of candidates for each role with your reasoning</li>
+              <li>Specific scenes/songs you want to see paired up</li>
+              <li>Read-with-others combinations you're curious about</li>
+              <li>Time built in for a candid debrief with music and choreo after</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="date-item">
+          <summary>
+            <div class="date-block"><div class="month">Mar</div><div class="day">18</div></div>
+            <div class="date-info">
+              <div class="event">First Read-Through</div>
+              <div class="meta">6:30 PM – 9:00 PM · Encore Office</div>
+            </div>
+            <div class="date-toggle">Prep</div>
+          </summary>
+          <div class="date-prep">
+            <h4>Come ready to share</h4>
+            <ul>
+              <li>Full company welcome and your director's vision — this speech sets the entire production</li>
+              <li>Brief introductions from every member of the creative team (Expertise Ensemble in action)</li>
+              <li>Rehearsal schedule walkthrough</li>
+              <li>The Ten Commandments — read through them with the company on day one</li>
+              <li>Encore expectations, code of conduct, and child safety reminders</li>
+              <li>Your first round of casting feedback for individual young artists</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="date-item">
+          <summary>
+            <div class="date-block"><div class="month">Apr</div><div class="day">22</div></div>
+            <div class="date-info">
+              <div class="event">Tech Week Begins</div>
+              <div class="meta">5 days · Electric Theater</div>
+            </div>
+            <div class="date-toggle">Prep</div>
+          </summary>
+          <div class="date-prep">
+            <h4>Come ready to share</h4>
+            <ul>
+              <li>Final cue list reviewed with stage manager and lighting designer</li>
+              <li>Locked blocking and choreography — minimal changes from here</li>
+              <li>Notes structure for the team (when, how, and to whom)</li>
+              <li>A clear plan for managing energy and morale through long days</li>
+              <li>Safety walkthrough of the Electric Theater with the SM team</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="date-item">
+          <summary>
+            <div class="date-block"><div class="month">Apr</div><div class="day">28</div></div>
+            <div class="date-info">
+              <div class="event">Opening Night</div>
+              <div class="meta">7:00 PM · Electric Theater</div>
+            </div>
+            <div class="date-toggle">Prep</div>
+          </summary>
+          <div class="date-prep">
+            <h4>Come ready to share</h4>
+            <ul>
+              <li>A short, sincere note for the company</li>
+              <li>Your hands off the wheel — they've got it from here</li>
+              <li>Stay present in the lobby — meet families and patrons after</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <section class="section" id="mission">
+      <div class="section-eyebrow">Who We Are</div>
+      <h2 class="section-title">Our Mission &amp; Vision</h2>
+      <p><em>Pulled from the "Mission &amp; Vision" Google Doc — edits there appear here automatically.</em></p>
+
+      <p style="font-size: 22px; font-weight: 500; color: var(--guava); line-height: 1.4; margin: 22px 0; letter-spacing: -0.015em;">"Encore Performing Arts inspires and empowers young artists to discover and develop important life skills through unparalleled arts education, mentorship, and extraordinary theater experiences."</p>
+
+      <p>Encore is an arts education organization first — a theater company second. We are not a school, not a touring company, and not a community theater in the traditional sense. We are an educational performing arts nonprofit that uses the vehicle of live theater to develop life skills in young artists ages 8 to 18.</p>
+
+      <h3>Through the lens of theater, we're developing</h3>
+      <ul class="bulleted">
+        <li>Collaboration and teamwork</li>
+        <li>Critical thinking and complex problem-solving</li>
+        <li>Giving and receiving constructive criticism</li>
+        <li>Communication</li>
+        <li>Confidence</li>
+        <li>Leadership</li>
+        <li>Empathy</li>
+      </ul>
+
+      <h3>The Three Daily Action Principles</h3>
+      <p>Every choice you make as a director should ladder back to one of these three. They're how The Encore Way shows up in the rehearsal room.</p>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="num">01</div>
+          <h4>Nurture Growth Mindsets</h4>
+          <p>Celebrate effort and improvement. Turn mistakes into teachable moments. Treat inexperience as opportunity.</p>
+        </div>
+        <div class="principle-card">
+          <div class="num">02</div>
+          <h4>Foster a Positive, Professional Environment</h4>
+          <p>Model industry standards. Prioritize safety and emotional well-being over showmanship. Keep drama on stage.</p>
+        </div>
+        <div class="principle-card">
+          <div class="num">03</div>
+          <h4>Empower Through Personalized Mentorship</h4>
+          <p>Tailor to each young artist. Balance performance skills and emotional intelligence. Foster teamwork.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section commandments" id="commandments">
+      <div class="section-eyebrow">Non-Negotiables</div>
+      <h2 class="section-title">The Ten Commandments</h2>
+      <p style="color: var(--cream-dark);"><em>Pulled from the "Ten Commandments" Google Doc.</em></p>
+      <ol class="commandments-list">
+        <li><span class="cmd-title">Respect is Our Spotlight.</span><span class="cmd-body">No yelling, snapping, or condescending tones. Build up, never break down.</span></li>
+        <li><span class="cmd-title">They're Not Just Kids — They're Artists.</span><span class="cmd-body">Always refer to youth as "young artists." Never "kids."</span></li>
+        <li><span class="cmd-title">Emotional Intelligence Takes Center Stage.</span><span class="cmd-body">Our primary mission is nurturing EQ. The professional theater experience is the cherry on top.</span></li>
+        <li><span class="cmd-title">See Them, Hear Them — On and Off Stage.</span><span class="cmd-body">Proper lighting, working mics, and genuine attentiveness to their concerns.</span></li>
+        <li><span class="cmd-title">Safety First, Sequins Second.</span><span class="cmd-body">No stunt or choreography is worth risking a young artist's well-being.</span></li>
+        <li><span class="cmd-title">Communication is Key — Set Clear Expectations.</span><span class="cmd-body">Communicate expectations clearly and upfront. Use production meetings (The Purple Box Rule).</span></li>
+        <li><span class="cmd-title">Respect the Expertise Ensemble.</span><span class="cmd-body">Stay in your lane. Let each expert lead their domain. We're an ensemble.</span></li>
+        <li><span class="cmd-title">Keep the Atmosphere Positive.</span><span class="cmd-body">Maintain an upbeat environment around young artists, parents, and patrons.</span></li>
+        <li><span class="cmd-title">Inexperience is Not a Weakness — It's an Opportunity.</span><span class="cmd-body">Treat inexperience as a chance for mentorship, not a flaw.</span></li>
+        <li><span class="cmd-title">Keep Perspective — Leave the Drama on Stage.</span><span class="cmd-body">Approach challenges with a calm, solution-oriented mindset.</span></li>
+      </ol>
+    </section>
+
+    <section class="section" id="director-role">
+      <div class="section-eyebrow">Your Role</div>
+      <h2 class="section-title">What it means to direct at Encore</h2>
+      <p><em>Pulled from the "Director Job Description" Google Doc — once we wire up live syncing, edits there will appear here automatically.</em></p>
+
+      <p>A theater director is responsible for overseeing all aspects of a theatrical production — conceptualization, casting, blocking, and overall artistic vision. You'll work closely with the Production Manager, Stage Manager, Music Supervisor, Choreographer, and design team to ensure a cohesive production. Your primary responsibility is to interpret the script and bring it to life on stage, guiding actors, designers, and the production team through rehearsal and performance — and to collaborate with the creative team to establish the visual and emotional tone of the production.</p>
+
+      <h3>The Mike &amp; Sully Principle</h3>
+      <p>Every Encore production needs role clarity between two functions: technical execution (the Mike / Stage Manager role) and people-centered nurturing (the Sully / Company Manager role). Before rehearsals begin, work with Kristen Stocks to confirm who's holding each role for The Lion King. As the director, you'll lean toward Sully — but expect to flex.</p>
+
+      <h3>Key Responsibilities</h3>
+      <ul class="bulleted detail">
+        <li><strong>Artistic Vision.</strong> Conceive and design the overall artistic and visual elements that align with your vision. Create an atmosphere that evokes the time period, setting, and emotional tone of the show.</li>
+        <li><strong>Collaboration.</strong> Work closely with actors, musicians, designers, and the production team so your concepts integrate seamlessly with the overarching artistic vision.</li>
+        <li><strong>Blocking and Staging.</strong> Design and oversee actor movement on stage. Create dynamic stage pictures and ensure the flow of the production is smooth.</li>
+        <li><strong>Rehearsal Management.</strong> Lead rehearsals with clear direction, feedback, and motivation. Work with cast on character development, timing, and delivery.</li>
+        <li><strong>Casting.</strong> Assist with casting decisions in collaboration with the music director and choreographer (Respect the Expertise Ensemble).</li>
+        <li><strong>Technical Coordination.</strong> Work closely with lighting, set, and costume designers to ensure all elements support the artistic vision and work together harmoniously.</li>
+        <li><strong>Budget Management.</strong> Honor and help manage the production's budget — cost estimates, procurement of materials, and cost-effective solutions.</li>
+      </ul>
+
+      <h3>Qualities of a Director</h3>
+      <div class="qualities-grid">
+        <div class="quality-card">
+          <h4>Creativity</h4>
+          <p>A creative and imaginative mindset to develop the visual and emotional aspects of the production that support the script's vision.</p>
+        </div>
+        <div class="quality-card">
+          <h4>Attention to Detail</h4>
+          <p>Meticulous attention to blocking, character development, and overall design — every aspect must be solid and reliable.</p>
+        </div>
+        <div class="quality-card">
+          <h4>Collaborative Skills</h4>
+          <p>Work harmoniously with actors, designers, and fellow team members to convey your vision effectively.</p>
+        </div>
+        <div class="quality-card">
+          <h4>Communication</h4>
+          <p>Articulate your vision clearly to the cast and crew so everyone is on the same page.</p>
+        </div>
+        <div class="quality-card">
+          <h4>Leadership</h4>
+          <p>Guide the production team, make decisive choices, and keep the production on track.</p>
+        </div>
+        <div class="quality-card">
+          <h4>Time Management</h4>
+          <p>Meet deadlines related to rehearsals and performances to ensure the production runs smoothly.</p>
+        </div>
+      </div>
+
+      <h3>The Production Journey</h3>
+      <p>The director's work moves through nine distinct phases. Open any phase to see what you're responsible for during it.</p>
+
+      <div class="phases-list">
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">01</span>
+            <span class="phase-name">Pre-Production</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>Pre-production is, in some ways, the most important part of our production process. With a clear plan and a path to a fully realized show, we avoid many pitfalls along the way. This phase shapes the creative vision, lays logistical plans, and meticulously prepares the artistic and technical elements — generating effective budgeting, scheduling, casting, and design that aligns with both your vision and Encore's vision for the show.</p>
+            <h5>Initial Preparation</h5>
+            <ul class="bulleted">
+              <li>Obtain a script as soon as one is available</li>
+              <li>Write a mission and vision statement for the production to share with the team</li>
+              <li>Develop a thorough knowledge of the script to support the audition process and casting</li>
+              <li>Participate in all production meetings</li>
+            </ul>
+            <h5>Creative Collaboration</h5>
+            <ul class="bulleted">
+              <li>Communicate with designers, choreographer, and music director about cuts, additions, or adjustments</li>
+              <li>Identify areas in the script needing specific or complicated staging or technical elements</li>
+              <li>Work with the Stage Manager and Production Manager to create the rehearsal schedule and a plan to complete all staging, vocal rehearsals, and choreography by Designer Run</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">02</span>
+            <span class="phase-name">Casting</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>Discuss ideal cast size, whether young artists will be cut, double-casting needs, and any roles that may require creative solutions.</p>
+            <h5>Scheduling</h5>
+            <p>Audition dates should be scheduled in collaboration with the Producers, Production Manager, Stage Manager, Director, Choreographer, and Music Director. Auditions should ideally be at least 3 weeks before the first rehearsal, with callbacks about 2 weeks before — leaving time to plan around conflicts and recast if needed.</p>
+            <h5>Audition Process</h5>
+            <ul class="bulleted">
+              <li>Find appropriate sides for callbacks</li>
+              <li>Run auditions and guide the team to find and build an appropriate cast for the show</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">03</span>
+            <span class="phase-name">Rehearsals</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>Maintaining a well-structured, healthy, inquisitive atmosphere throughout the rehearsal process is essential for nurturing creativity and reaching the production's full potential. Such an environment encourages open dialogue, the exploration of ideas, and the development of Encore's young artists. It fosters trust and collaboration, allowing artists to take risks, make discoveries, and adapt their performances. Inquisitiveness sparks innovation and fresh perspectives — leading to a richer, more dynamic production that resonates with audiences.</p>
+            <h5>Daily Responsibilities</h5>
+            <ul class="bulleted">
+              <li>Engage in and respect a harmonious, collaborative working environment</li>
+              <li>Be prepared and follow the rehearsal schedule for scenes and blocking</li>
+              <li>Remember you're working with performers who need positive feedback, reminders, and encouragement</li>
+              <li>Educate young artists on performance techniques and lead supportive warm-ups</li>
+              <li>Correct mistakes as needed; have high expectations for execution and overall production vision</li>
+            </ul>
+            <h5>Collaboration and Communication</h5>
+            <ul class="bulleted">
+              <li>Continually communicate with the music director and choreographer to align all production expectations</li>
+              <li>Attend production meetings and update design and production teams on progress, changes, and concerns</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">04</span>
+            <span class="phase-name">Designer Run</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>All designers come in with a fully realized design, ready to be flexible and collaborate with the rest of the design team. Here we begin to examine all designs and see how they move into one big design that tells one big, clear, moving story.</p>
+            <p>Depending on your discretion, this is often an opportunity to sit with the lighting designer (LD) and Stage Manager to share specifics about lights — colors, mood, areas that should or shouldn't be lit. The LD takes notes to begin programming the board, and gets lead time to discuss what's possible given the space and lighting instruments available.</p>
+            <ul class="bulleted">
+              <li>Attend the designer run with a complete understanding of the staging and readiness to answer designer questions after the run</li>
+              <li>Use this opportunity to catch and work out any issues before moving into the performance space</li>
+              <li>Participate in the production meeting following the designer run to address questions and discrepancies</li>
+            </ul>
+            <p><strong>Important:</strong> The designer run is always followed by a production meeting where questions and discrepancies can be addressed. This meeting essentially sets the table for tech.</p>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">05</span>
+            <span class="phase-name">Paper Tech</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>The production team — director, stage manager, lighting designer, sound designer, set designer, and other technical crew — go through the script and discuss/plan the technical elements: lighting changes, sound effects, set movements, and other cues.</p>
+            <p>It's called a "paper tech" because traditionally this run-through goes through the script focusing on the technical details, often using paper and pencil to mark cues, timings, and other technical notes. While actors aren't present, their blocking and movements are discussed and accounted for.</p>
+            <p>The Show Bible, created by the Stage Manager, is the source of truth for this meeting. It is paramount that <strong>at least the first draft of the Bible is ready for this meeting.</strong> The goal: ensure all technical elements are coordinated and well-planned before moving into the space.</p>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">06</span>
+            <span class="phase-name">Dry Tech</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>Dry tech runs through cues with the entire design team — focusing mainly on set moves and how lights, sounds, and sets coordinate together before adding actors and costumes. A great way to work out bugs before the young artists are in the room.</p>
+            <ul class="bulleted">
+              <li>Attend the dry tech meeting with the entire design team to run through cues, focusing on set moves, lights, sounds, and sets coordination</li>
+              <li>Provide input on how elements can be manipulated to facilitate transitions</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">07</span>
+            <span class="phase-name">Tech</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>Guide all the elements coming together and effectively prepare to hand the show over to the Stage Manager. Ensure all parts are coming together harmoniously and serving the overall vision and storytelling. Continue to coach and note the cast through the changes and challenges that reveal themselves during tech.</p>
+            <h5>Technical Integration</h5>
+            <ul class="bulleted">
+              <li>Work with the Sound Designer to ensure music, microphones, and other sound elements create a balanced sound</li>
+              <li>Work with the Light Designer to ensure lighting serves the overall vision and storytelling</li>
+              <li>During technical rehearsals, ensure all design elements are maintained and continue to grow</li>
+            </ul>
+            <h5>Leadership and Communication</h5>
+            <ul class="bulleted">
+              <li>Attend production meetings at the end of tech, at the stage manager's discretion</li>
+              <li>Continue collaboration with the production manager, stage manager, and the rest of the design and production team</li>
+              <li>Continue to direct, note, and encourage the cast</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">08</span>
+            <span class="phase-name">During the Run</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <p>Once the show is open, your job is essentially done. Continue to attend performances, cheer on the cast, and note the show as you see appropriate.</p>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">09</span>
+            <span class="phase-name">End of the Run</span>
+            <span class="phase-toggle">View</span>
+          </summary>
+          <div class="phase-content">
+            <ul class="bulleted">
+              <li>Assist and oversee the return of any borrowed equipment or materials that supported the production</li>
+              <li>Reflect on the production's success and document notes for future reference and improvement</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+
+      <h3>Ongoing Knowledge and Oversight</h3>
+      <ul class="bulleted">
+        <li>Maintain a thorough understanding of the script and production techniques needed for the current production</li>
+        <li>Communicate regularly with the production manager, stage manager, designers, and other production positions</li>
+        <li>Stay updated on current trends in theater production and performance</li>
+      </ul>
+
+      <div class="checklist-cta">
+        <div class="checklist-cta-text">
+          <strong>Ready to get to work?</strong>
+          <p>Use the Director's Checklist below to track your progress through every phase of the production.</p>
+        </div>
+        <a href="#checklist" class="btn">Open the Checklist</a>
+      </div>
+    </section>
+
+    <section class="section" id="checklist">
+      <div class="section-eyebrow">Reference Tool</div>
+      <h2 class="section-title">The Director's Checklist</h2>
+      <p><em>Pulled from the "Director Checklist" Google Doc.</em> A phase-by-phase task list. Check items off as you complete them — once we wire up the backend, your progress will save automatically and Kristen will see it on her end. Open any phase below.</p>
+
+      <div class="phases-list">
+
+        <details class="phase-item" open>
+          <summary>
+            <span class="phase-num">01</span>
+            <span class="phase-name">Pre-Production Phase</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 17</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Initial Preparation</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Obtain and read script thoroughly</label></li>
+              <li><label><input type="checkbox" /> Write mission and vision statement for the production</label></li>
+              <li><label><input type="checkbox" /> Share vision statement with production team</label></li>
+              <li><label><input type="checkbox" /> Develop comprehensive script analysis</label></li>
+              <li><label><input type="checkbox" /> Identify challenging staging / technical requirements</label></li>
+              <li><label><input type="checkbox" /> Create preliminary character breakdown</label></li>
+            </ul>
+            <h5>Team Collaboration</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend onboarding meeting with full production team</label></li>
+              <li><label><input type="checkbox" /> Participate in all scheduled production meetings</label></li>
+              <li><label><input type="checkbox" /> Meet individually with Music Director</label></li>
+              <li><label><input type="checkbox" /> Meet individually with Choreographer</label></li>
+              <li><label><input type="checkbox" /> Meet individually with each Designer (Set, Costume, Lighting, Sound, Props, etc.)</label></li>
+              <li><label><input type="checkbox" /> Discuss any script cuts, additions, or adjustments needed</label></li>
+              <li><label><input type="checkbox" /> Align creative vision with all department heads</label></li>
+            </ul>
+            <h5>Planning and Scheduling</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Work with Stage Manager and Production Manager to create rehearsal schedule</label></li>
+              <li><label><input type="checkbox" /> Plan completion timeline for staging, vocals, and choreography by Designer Run</label></li>
+              <li><label><input type="checkbox" /> Confirm all production calendar dates</label></li>
+              <li><label><input type="checkbox" /> Review and approve rehearsal space arrangements</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">02</span>
+            <span class="phase-name">Casting Phase</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 16</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Pre-Audition Preparation</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Discuss ideal cast size with producers</label></li>
+              <li><label><input type="checkbox" /> Determine if Young Artists will be cut or all included</label></li>
+              <li><label><input type="checkbox" /> Decide on double-casting needs</label></li>
+              <li><label><input type="checkbox" /> Identify particularly challenging roles requiring creative solutions</label></li>
+              <li><label><input type="checkbox" /> Select appropriate sides for callbacks</label></li>
+              <li><label><input type="checkbox" /> Prepare audition materials and character descriptions</label></li>
+            </ul>
+            <h5>Audition Process</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Confirm audition dates (3 weeks before first rehearsal)</label></li>
+              <li><label><input type="checkbox" /> Confirm callback dates (2 weeks before first rehearsal)</label></li>
+              <li><label><input type="checkbox" /> Attend all audition sessions</label></li>
+              <li><label><input type="checkbox" /> Collaborate with Music Director and Choreographer on casting decisions</label></li>
+              <li><label><input type="checkbox" /> Run callback sessions</label></li>
+              <li><label><input type="checkbox" /> Make final casting decisions with creative team</label></li>
+              <li><label><input type="checkbox" /> Participate in role offers process</label></li>
+            </ul>
+            <h5>Post-Casting</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend parent meeting</label></li>
+              <li><label><input type="checkbox" /> Present unified vision with design team</label></li>
+              <li><label><input type="checkbox" /> Communicate full production schedule to cast and families</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">03</span>
+            <span class="phase-name">Rehearsal Phase</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 19</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>First Week</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Lead parent meeting and design presentations</label></li>
+              <li><label><input type="checkbox" /> Conduct table work with full cast</label></li>
+              <li><label><input type="checkbox" /> Establish rehearsal room expectations and atmosphere</label></li>
+              <li><label><input type="checkbox" /> Begin character development work</label></li>
+              <li><label><input type="checkbox" /> Start initial blocking and staging</label></li>
+            </ul>
+            <h5>Ongoing Rehearsal Responsibilities</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Arrive prepared for each rehearsal session</label></li>
+              <li><label><input type="checkbox" /> Follow rehearsal schedule for directing scenes and blocking</label></li>
+              <li><label><input type="checkbox" /> Provide positive feedback, reminders, and encouragement</label></li>
+              <li><label><input type="checkbox" /> Lead or coordinate warm-ups for cast</label></li>
+              <li><label><input type="checkbox" /> Correct mistakes with high expectations for script execution</label></li>
+              <li><label><input type="checkbox" /> Maintain collaborative working environment</label></li>
+            </ul>
+            <h5>Weekly Tasks</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Communicate regularly with Music Director and Choreographer</label></li>
+              <li><label><input type="checkbox" /> Attend bi-weekly production meetings</label></li>
+              <li><label><input type="checkbox" /> Update design and production teams on progress and changes</label></li>
+              <li><label><input type="checkbox" /> Address any concerns or challenges that arise</label></li>
+              <li><label><input type="checkbox" /> Track rehearsal progress toward Designer Run goals</label></li>
+            </ul>
+            <h5>Preparation for Designer Run</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Complete all staging by Designer Run date</label></li>
+              <li><label><input type="checkbox" /> Ensure cast is prepared for full run-through</label></li>
+              <li><label><input type="checkbox" /> Coordinate with Stage Manager on Show Bible development</label></li>
+              <li><label><input type="checkbox" /> Prepare to answer designer questions after run</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">04</span>
+            <span class="phase-name">Designer Run</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 12</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Preparation</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Confirm all staging is complete and ready</label></li>
+              <li><label><input type="checkbox" /> Brief cast on expectations for Designer Run</label></li>
+              <li><label><input type="checkbox" /> Review any last-minute staging adjustments</label></li>
+              <li><label><input type="checkbox" /> Prepare notes and questions for post-run meeting</label></li>
+            </ul>
+            <h5>Designer Run Day</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend run with complete understanding of staging</label></li>
+              <li><label><input type="checkbox" /> Take notes on how designs integrate with staging</label></li>
+              <li><label><input type="checkbox" /> Be ready to answer questions from other designers</label></li>
+              <li><label><input type="checkbox" /> Observe how all elements work together</label></li>
+            </ul>
+            <h5>Post-Designer Run</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend production meeting immediately following run</label></li>
+              <li><label><input type="checkbox" /> Address questions and discrepancies with design team</label></li>
+              <li><label><input type="checkbox" /> Make final adjustments before moving to performance space</label></li>
+              <li><label><input type="checkbox" /> Confirm tech schedule and expectations</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">05</span>
+            <span class="phase-name">Paper Tech</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 9</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Preparation</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Review Stage Manager's Show Bible (first draft)</label></li>
+              <li><label><input type="checkbox" /> Prepare specific lighting notes and requests</label></li>
+              <li><label><input type="checkbox" /> Review all technical requirements in script</label></li>
+              <li><label><input type="checkbox" /> Coordinate with Stage Manager on cue sequences</label></li>
+            </ul>
+            <h5>Paper Tech Session</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend paper tech with full production team</label></li>
+              <li><label><input type="checkbox" /> Discuss lighting specifics with Lighting Designer</label></li>
+              <li><label><input type="checkbox" /> Review sound cues and requirements</label></li>
+              <li><label><input type="checkbox" /> Coordinate set movement and technical elements</label></li>
+              <li><label><input type="checkbox" /> Ensure all departments understand technical vision</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">06</span>
+            <span class="phase-name">Dry Tech</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 7</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Preparation</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Review tech schedule and expectations</label></li>
+              <li><label><input type="checkbox" /> Prepare notes on transition facilitation</label></li>
+              <li><label><input type="checkbox" /> Coordinate with Stage Manager on cue timing</label></li>
+            </ul>
+            <h5>Dry Tech Session</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend dry tech with entire design team</label></li>
+              <li><label><input type="checkbox" /> Observe coordination of lights, sounds, and set moves</label></li>
+              <li><label><input type="checkbox" /> Provide input on element manipulation for transitions</label></li>
+              <li><label><input type="checkbox" /> Work out technical bugs before actors return</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">07</span>
+            <span class="phase-name">Tech Rehearsals</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 13</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Daily Tech Responsibilities</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Guide integration of all production elements</label></li>
+              <li><label><input type="checkbox" /> Work with Sound Designer on audio balance</label></li>
+              <li><label><input type="checkbox" /> Work with Lighting Designer on visual storytelling</label></li>
+              <li><label><input type="checkbox" /> Continue directing and noting cast through changes</label></li>
+              <li><label><input type="checkbox" /> Ensure all design elements serve overall vision</label></li>
+            </ul>
+            <h5>Communication and Leadership</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend nightly production meetings</label></li>
+              <li><label><input type="checkbox" /> Continue collaboration with production team</label></li>
+              <li><label><input type="checkbox" /> Provide encouragement to cast during challenging tech process</label></li>
+              <li><label><input type="checkbox" /> Make final adjustments to staging as needed</label></li>
+              <li><label><input type="checkbox" /> Prepare to hand show over to Stage Manager</label></li>
+            </ul>
+            <h5>Final Tech Tasks</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Approve final lighting and sound levels</label></li>
+              <li><label><input type="checkbox" /> Give final notes to cast and crew</label></li>
+              <li><label><input type="checkbox" /> Confirm all elements are ready for performance</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">08</span>
+            <span class="phase-name">Performance Phase</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 8</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Opening Night</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Give opening night notes / encouragement to cast</label></li>
+              <li><label><input type="checkbox" /> Attend opening night performance</label></li>
+              <li><label><input type="checkbox" /> Celebrate with cast and crew</label></li>
+            </ul>
+            <h5>During Run</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Attend scheduled performances</label></li>
+              <li><label><input type="checkbox" /> Take notes on performance quality and consistency</label></li>
+              <li><label><input type="checkbox" /> Provide ongoing support and encouragement to cast</label></li>
+              <li><label><input type="checkbox" /> Address any performance issues that arise</label></li>
+              <li><label><input type="checkbox" /> Support special performances (sensory-friendly, etc.)</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">09</span>
+            <span class="phase-name">Post-Production</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 13</span></span>
+          </summary>
+          <div class="phase-content">
+            <h5>Immediate Post-Closing</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Participate in strike as needed</label></li>
+              <li><label><input type="checkbox" /> Oversee return of borrowed equipment / materials</label></li>
+              <li><label><input type="checkbox" /> Thank cast, crew, and production team</label></li>
+              <li><label><input type="checkbox" /> Complete any required final paperwork</label></li>
+            </ul>
+            <h5>Evaluation and Documentation</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Reflect on production's success and challenges</label></li>
+              <li><label><input type="checkbox" /> Document notes for future reference and improvement</label></li>
+              <li><label><input type="checkbox" /> Complete production evaluation forms</label></li>
+              <li><label><input type="checkbox" /> Provide feedback to production team</label></li>
+              <li><label><input type="checkbox" /> Submit final reports as required</label></li>
+            </ul>
+            <h5>Final Tasks</h5>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Return any borrowed scripts or materials</label></li>
+              <li><label><input type="checkbox" /> Archive important production documents</label></li>
+              <li><label><input type="checkbox" /> Write thank you notes to key collaborators</label></li>
+              <li><label><input type="checkbox" /> Submit final budget documentation if applicable</label></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="phase-item">
+          <summary>
+            <span class="phase-num">∞</span>
+            <span class="phase-name">Ongoing Responsibilities</span>
+            <span class="phase-toggle"><span class="checklist-progress">0 / 8</span></span>
+          </summary>
+          <div class="phase-content">
+            <p><em>These run through every phase of the production.</em></p>
+            <ul class="checklist">
+              <li><label><input type="checkbox" /> Maintain thorough understanding of script and production needs</label></li>
+              <li><label><input type="checkbox" /> Communicate regularly with Production Manager and Stage Manager</label></li>
+              <li><label><input type="checkbox" /> Stay updated on current theater trends and techniques</label></li>
+              <li><label><input type="checkbox" /> Honor budget constraints and collaborate on cost-effective solutions</label></li>
+              <li><label><input type="checkbox" /> Uphold Encore's educational mission and values in all interactions</label></li>
+              <li><label><input type="checkbox" /> Model positive, professional behavior for young artists</label></li>
+              <li><label><input type="checkbox" /> Support phone-free rehearsal environment</label></li>
+              <li><label><input type="checkbox" /> Maintain collaborative, growth-oriented atmosphere</label></li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <section class="section" id="training">
+      <div class="section-eyebrow">Required</div>
+      <h2 class="section-title">Child Safety Training</h2>
+      <p>Before working with any young artist, every Encore team member completes our child safety training. It covers our two-adult rule, mandatory reporting obligations, communication boundaries with minors, and what to do if a young artist discloses harm. Commandment #5 is non-negotiable: <em>Safety First, Sequins Second.</em></p>
+
+      <div class="info-card">
+        <div class="info-icon">!</div>
+        <div class="info-text">
+          <h4>Encore Child Safety Training</h4>
+          <p>Approximately 25 minutes · Last updated January 2026</p>
+        </div>
+        <button class="btn" type="button" onclick="openTraining()">Begin Training</button>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="training-complete" />
+        <label for="training-complete">I have completed the Encore Child Safety Training and I understand my responsibilities as a mandatory reporter and as an adult working with minors. I commit to following Encore's child safety policies in every interaction with our young artists.</label>
+      </div>
+    </section>
+
+    <section class="section" id="background">
+      <div class="section-eyebrow">Required</div>
+      <h2 class="section-title">Background Check</h2>
+      <p>Encore requires a current background check for everyone working directly with our young artists. We use SentryLink, an FCRA-compliant service. You'll initiate the check yourself and authorize Encore to receive the results — typically returned within 24 hours.</p>
+
+      <div class="info-card">
+        <div class="info-icon green">✓</div>
+        <div class="info-text">
+          <h4>SentryLink Background Check</h4>
+          <p>$19.95, paid by you at time of application. Encore will reimburse this within 14 days of receipt.</p>
+        </div>
+        <a href="https://www.sentrylink.com" target="_blank" rel="noopener" class="btn">Start Background Check</a>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="bg-complete" />
+        <label for="bg-complete">I have completed my background check through SentryLink and authorized Encore to receive the results.</label>
+      </div>
+    </section>
+
+    <section class="section" id="tax">
+      <div class="section-eyebrow">Required</div>
+      <h2 class="section-title">W-9 Tax Form</h2>
+      <p>As a contracted director, you'll receive a 1099-NEC from Encore at year end if your total earnings exceed $600. To prepare that form correctly, we need a current W-9 with your name, address, and tax ID (SSN or EIN). Encore Performing Arts is a 501(c)(3) nonprofit; our EIN is 86-2806815 if you need it for your records.</p>
+
+      <div class="info-card">
+        <div class="info-icon slate">$</div>
+        <div class="info-text">
+          <h4>IRS Form W-9</h4>
+          <p>Download the blank form, fill it out, sign it, and upload the completed version below. Takes about 5 minutes.</p>
+        </div>
+        <a href="https://www.irs.gov/pub/irs-pdf/fw9.pdf" target="_blank" rel="noopener" class="btn btn-secondary">Download Blank W-9</a>
+      </div>
+
+      <div class="form-group" style="margin-top: 24px;">
+        <label class="form-label">Upload Your Completed W-9</label>
+        <div class="upload-area">
+          <div class="upload-icon">+</div>
+          <div class="upload-text">Click or drag your completed W-9 to upload</div>
+          <div class="upload-hint">PDF preferred · Max 10MB · Stored securely</div>
+        </div>
+        <p class="form-help">Your W-9 contains sensitive information. It's encrypted in transit and stored in a restricted-access folder visible only to Amy Childress (Director of Finance) and Adam.</p>
+      </div>
+    </section>
+
+    <section class="section" id="submit">
+      <div class="section-eyebrow">Tell us about you</div>
+      <h2 class="section-title">Your Director's Page</h2>
+      <p>The information you provide here will be used in show programs, on encorepa.org, and in cast communications. Take your time. The vision statement in particular is something families and young artists will read carefully — it tells them what kind of show they're walking into.</p>
+
+      <div class="task-block">
+        <span class="task-status">To Do</span>
+
+        <div class="form-group">
+          <label class="form-label">Headshot</label>
+          <div class="upload-area">
+            <div class="upload-icon">+</div>
+            <div class="upload-text">Click or drag a photo to upload</div>
+            <div class="upload-hint">JPG or PNG · Recommended 1200×1200 px · Max 10MB</div>
+          </div>
+          <p class="form-help">A current, professional-looking headshot. Doesn't need to be studio-shot — natural light and a plain background work great.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="bio">Short Bio</label>
+          <textarea class="form-textarea" id="bio" placeholder="Where you trained, where you've directed, what brought you to Encore. 100–200 words is the sweet spot."></textarea>
+          <p class="form-help">Written in third person, please. ("Sarah Jones is a director based in St. George…")</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="vision">Director's Vision for The Lion King</label>
+          <textarea class="form-textarea" id="vision" style="min-height: 200px;" placeholder="What kind of show are you making? What do you want the audience to feel? What's the core idea you want every young artist and crew member to hold onto when things get hard?"></textarea>
+          <p class="form-help">This becomes the north star for your whole production team. Be specific. Be honest. Be ambitious. Tie it back to the life skills you'll be developing alongside the show.</p>
+        </div>
+
+        <button class="btn">Submit Your Director's Page</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3645.525 744.452" aria-label="Encore">
+      <path d="M3625.374,637.942c0,53.14-26.564,79.693-79.693,79.693-56.409,0-84.608-26.553-84.608-79.693s28.199-79.705,84.608-79.705c53.129,0,79.693,26.576,79.693,79.705Zm-109.548-137.771c-12.967-86.288-23.803-154.301-32.432-204.001-8.66-49.71-15.691-88.368-21.079-115.983-5.418-27.606-9.192-48.32-11.354-62.133-2.161-13.803-3.226-27.965-3.226-42.459,0-50.39,32.95-75.595,98.895-75.595s98.895,25.205,98.895,75.595c0,14.493-1.081,28.656-3.226,42.459-2.192,13.813-6.24,34.527-12.175,62.133-5.936,27.616-14.337,66.273-25.127,115.983-10.821,49.7-24.32,117.714-40.529,204.001h-48.641Z"/>
+      <path d="M217.454,529.272c29.006,85.947,143.939,188.468,316.874,34.177,10.352-9.322,25.885,3.101,19.674,14.493-33.137,63.173-108.722,157.402-263.023,157.402C131.507,735.344,0,616.26,0,469.21,0,321.13,129.446,202.046,289.949,203.086h3.111c129.436-1.04,239.199,78.696,275.436,187.428,4.151,13.463-3.101,27.956-16.564,32.106l-334.478,106.652Zm144.979-92.159c8.282-3.111,13.463-12.423,11.392-20.714-17.604-82.837-57.992-172.925-118.054-162.573-1.03,0-3.111,1.03-4.141,1.03-73.525,18.644-67.304,162.583-48.67,231.957l159.472-49.7Z"/>
+      <path d="M1250.416,730.163c-76.626,26.925-258.883,36.247-258.883-164.644v-178.116c0-32.097-13.463-92.159-79.736-98.37-52.811-4.141-100.441,50.74-100.441,97.34v244.38c0,6.211-3.111,65.243,61.093,71.454,5.181,1.03,11.392,6.211,11.392,13.463s-5.181,13.463-12.432,13.463h-318.935c-7.251,0-13.463-6.211-13.463-13.463s5.171-12.432,12.423-13.463c36.247-4.141,60.062-30.026,61.102-69.384V334.593s1.03-54.881-56.961-52.811c-9.312,0-16.564-6.211-16.564-15.533,0-7.242,5.171-13.463,12.423-14.493l259.923-40.388v65.243s47.63-66.273,162.573-65.243c106.662,2.07,216.424,68.344,216.424,178.116l-1.03,214.344c0,112.873,61.093,126.336,61.093,126.336Z"/>
+      <path d="M1794.492,546.942c-33.137,63.173-130.361,188.402-284.642,188.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.436-267.164,289.949-266.124h3.101c72.494-1.04,139.798,24.855,190.539,65.233,76.635,63.173,37.278,124.265-39.348,138.768h-3.111c-36.238,5.171-71.445-16.573-83.867-50.74-21.754-61.102-55.931-109.772-101.49-102.521-1.04,0-3.101,0-4.141,1.03-88.018,26.925-61.093,210.213-34.167,274.416,40.378,97.34,183.162,147.116,338.493,3.177,10.362-9.322,25.895,3.101,19.674,14.493Z"/>
+      <path d="M2349.66,470.25c0,151.191-131.507,273.376-290.979,273.376s-290.989-122.185-290.989-273.376,129.446-273.376,289.959-273.376h3.101c159.463,0,288.909,122.185,288.909,273.376Zm-198.82,0c0-67.314-12.432-223.675-90.088-223.675h-4.141c-77.666,0-90.098,156.362-90.098,223.675s12.432,223.675,90.098,223.675h4.141c77.656,0,90.088-156.372,90.088-223.675Z"/>
+      <path d="M2782.269,394.655c-3.101,1.04-7.242,1.04-11.392,1.04-41.409,0-74.555-33.137-74.555-74.565,0-18.634,6.221-35.207,17.613-48.67-48.68-2.07-121.164,72.494-121.164,135.657v222.635c0,6.211-3.101,65.243,61.093,72.485,7.251,0,11.392,6.221,11.392,12.432v1.03c0,7.251-5.171,12.432-12.423,12.432h-318.945c-7.251,0-13.453-5.181-13.453-13.463,0-6.211,5.171-12.432,12.423-12.432,62.133-7.242,61.093-65.233,61.093-69.374V334.593s1.04-52.811-56.952-52.811c-8.282,0-15.533-5.171-16.564-13.463-1.04-8.282,5.171-15.533,12.423-16.564l259.913-40.388v66.273s57.992-78.696,162.573-65.233c117.014,14.493,113.913,176.036,26.925,182.247Z"/>
+      <path d="M3056.694,529.272c28.996,85.947,143.939,188.468,316.865,34.177,10.362-9.322,25.895,3.101,19.684,14.493-33.137,63.173-108.732,157.402-263.023,157.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.446-267.164,289.959-266.124h3.101c129.446-1.04,239.209,78.696,275.446,187.428,4.141,13.463-3.111,27.956-16.564,32.106l-334.478,106.652Zm144.97-92.159c8.282-3.111,13.472-12.423,11.392-20.714-17.594-82.837-57.992-172.925-118.044-162.573-1.04,0-3.111,1.03-4.141,1.03-73.525,18.644-67.314,162.583-48.68,231.957l159.472-49.7Z"/>
+    </svg>
+  </div>
+  <div class="brand-footer-sub">Performing Arts</div>
+  <div class="footer-tagline">We teach life skills through stage skills.</div>
+  <p>Questions? Reach out to us at <a href="mailto:hello@encorepa.org">hello@encorepa.org</a> or visit <a href="https://encorepa.org" target="_blank">encorepa.org</a>.</p>
+  <div class="footer-fineprint">A Private Page for Sarah Jones</div>
+</footer>
+
+<div class="lightbox-bg" id="trainingLightbox" role="dialog" aria-modal="true" aria-label="Child Safety Training">
+  <div class="lightbox-frame">
+    <button class="lightbox-close" type="button" onclick="closeTraining()" aria-label="Close training">×</button>
+    <iframe class="lightbox-iframe" id="trainingIframe" title="Encore Child Safety Training"></iframe>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const lb = document.getElementById('trainingLightbox');
+    const iframe = document.getElementById('trainingIframe');
+    const TRAINING_URL = 'child-safety-training.html';
+
+    window.openTraining = function() {
+      if (!iframe.getAttribute('src')) iframe.setAttribute('src', TRAINING_URL);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeTraining = function() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    // Click outside the frame to close
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb) window.closeTraining();
+    });
+
+    // Esc to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lb.classList.contains('open')) window.closeTraining();
+    });
+  })();
+</script>
+
+</body>
+</html>
