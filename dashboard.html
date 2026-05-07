@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Encore Team Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F4EFE6;
+    --cream-light: #FBF8F0;
+    --cream-dark: #E8E0CD;
+    --guava: #1F3540;
+    --guava-soft: #4A5C68;
+    --guava-muted: #7E8C95;
+    --line: #DDD2BA;
+    --berry: #387E7F;
+    --berry-dark: #2D6566;
+    --lemon: #F7B73D;
+    --green: #4F8A4A;
+    --plum: #6B3D5C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--guava);
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* TOP BAR */
+  .topbar { background: var(--guava); color: var(--cream-light); padding: 14px 0; border-bottom: 4px solid var(--berry); }
+  .topbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+  .brand-wrap { display: flex; align-items: center; gap: 16px; }
+  .brand-logo { height: 26px; width: auto; color: var(--cream-light); display: block; }
+  .brand-logo svg { height: 100%; width: auto; display: block; }
+  .brand-logo svg path { fill: currentColor; }
+  .brand-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.2); }
+  .brand-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--cream-dark); }
+  .topbar-meta { font-size: 13px; color: var(--cream-dark); font-weight: 500; }
+  .topbar-meta strong { color: var(--cream-light); font-weight: 700; }
+
+  /* HEADER */
+  .header { max-width: 1200px; margin: 0 auto; padding: 50px 32px 24px; }
+  .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--berry); margin-bottom: 14px; }
+  .page-title { font-size: clamp(36px, 5vw, 56px); font-weight: 800; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 10px; }
+  .page-subtitle { font-size: 17px; color: var(--guava-soft); max-width: 640px; line-height: 1.55; }
+
+  /* STATS */
+  .stats-row { display: flex; gap: 40px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--guava-muted); margin-bottom: 6px; }
+  .stat-value { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--guava); font-variant-numeric: tabular-nums; line-height: 1; }
+
+  /* GRID */
+  .grid { max-width: 1200px; margin: 0 auto; padding: 28px 32px 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+
+  /* CARD */
+  .card { background: var(--cream-light); border: 1px solid var(--line); border-radius: 8px; padding: 22px; transition: border-color 0.15s; display: flex; flex-direction: column; gap: 16px; }
+  .card:hover { border-color: var(--berry); }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .card-name-block { min-width: 0; }
+  .card-title { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 4px; }
+  .card-meta { font-size: 13px; color: var(--guava-soft); font-weight: 500; }
+  .card-meta-empty { color: var(--guava-muted); font-style: italic; }
+
+  /* ROLE BADGE */
+  .role-badge { flex-shrink: 0; background: var(--guava-muted); color: var(--cream-light); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+  .role-badge.director { background: var(--berry); }
+  .role-badge.music-director { background: var(--plum); }
+  .role-badge.stage-manager { background: var(--guava); }
+  .role-badge.lighting-designer { background: var(--lemon); color: var(--guava); }
+
+  /* STATUS LIST */
+  .card-status { display: flex; flex-direction: column; gap: 6px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .status-row { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; }
+  .status-label { color: var(--guava-soft); font-weight: 500; }
+  .status-value { display: flex; align-items: center; gap: 6px; color: var(--guava-muted); font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .status-value.done { color: var(--green); }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .status-value.done .status-dot { background: var(--green); }
+
+  /* ACTIONS */
+  .card-actions { display: flex; gap: 8px; }
+  .btn { flex: 1; background: var(--berry); color: var(--cream-light); border: none; padding: 10px 14px; border-radius: 6px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.02em; cursor: pointer; text-decoration: none; text-align: center; transition: background 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+  .btn:hover { background: var(--berry-dark); }
+  .btn-disabled { background: var(--line); color: var(--guava-muted); cursor: not-allowed; }
+  .btn-disabled:hover { background: var(--line); }
+  .btn-icon { background: transparent; color: var(--guava-soft); border: 1px solid var(--line); padding: 10px 12px; flex: 0 0 auto; cursor: pointer; border-radius: 6px; font-size: 13px; transition: all 0.15s; display: inline-flex; align-items: center; justify-content: center; }
+  .btn-icon:hover { color: var(--berry); border-color: var(--berry); background: var(--cream); }
+
+  /* ADD CARD */
+  .add-card { background: transparent; border: 1px dashed var(--line); border-radius: 8px; padding: 22px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 220px; transition: all 0.15s; color: inherit; }
+  .add-card:hover { border-color: var(--berry); border-style: solid; background: var(--cream-light); }
+  .add-card .plus { font-size: 32px; color: var(--berry); font-weight: 300; line-height: 1; }
+  .add-card .label { font-weight: 700; color: var(--guava); font-size: 15px; }
+  .add-card .hint { font-size: 12.5px; color: var(--guava-muted); font-weight: 500; }
+
+  /* EMPTY / LOADING */
+  .empty-state, .loading-state { grid-column: 1 / -1; padding: 80px 20px; text-align: center; color: var(--guava-muted); font-size: 14px; font-weight: 500; }
+
+  /* FILTER BAR */
+  .filter-bar { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-chip { background: var(--cream-light); border: 1px solid var(--line); padding: 7px 14px; border-radius: 100px; font-size: 12.5px; font-weight: 600; color: var(--guava-soft); cursor: pointer; transition: all 0.15s; font-family: 'Outfit', sans-serif; }
+  .filter-chip:hover { border-color: var(--berry); color: var(--berry); }
+  .filter-chip.active { background: var(--berry); color: var(--cream-light); border-color: var(--berry); }
+  .filter-chip .count { opacity: 0.7; margin-left: 4px; font-variant-numeric: tabular-nums; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; padding: 28px 20px 80px; gap: 14px; }
+    .header { padding: 40px 20px 20px; }
+    .stats-row { gap: 20px; }
+    .stat-value { font-size: 22px; }
+    .topbar-inner { padding: 0 20px; }
+    .filter-bar { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-wrap">
+      <div class="brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3645.525 744.452" aria-label="Encore">
+          <path d="M3625.374,637.942c0,53.14-26.564,79.693-79.693,79.693-56.409,0-84.608-26.553-84.608-79.693s28.199-79.705,84.608-79.705c53.129,0,79.693,26.576,79.693,79.705Zm-109.548-137.771c-12.967-86.288-23.803-154.301-32.432-204.001-8.66-49.71-15.691-88.368-21.079-115.983-5.418-27.606-9.192-48.32-11.354-62.133-2.161-13.803-3.226-27.965-3.226-42.459,0-50.39,32.95-75.595,98.895-75.595s98.895,25.205,98.895,75.595c0,14.493-1.081,28.656-3.226,42.459-2.192,13.813-6.24,34.527-12.175,62.133-5.936,27.616-14.337,66.273-25.127,115.983-10.821,49.7-24.32,117.714-40.529,204.001h-48.641Z"/>
+          <path d="M217.454,529.272c29.006,85.947,143.939,188.468,316.874,34.177,10.352-9.322,25.885,3.101,19.674,14.493-33.137,63.173-108.722,157.402-263.023,157.402C131.507,735.344,0,616.26,0,469.21,0,321.13,129.446,202.046,289.949,203.086h3.111c129.436-1.04,239.199,78.696,275.436,187.428,4.151,13.463-3.101,27.956-16.564,32.106l-334.478,106.652Zm144.979-92.159c8.282-3.111,13.463-12.423,11.392-20.714-17.604-82.837-57.992-172.925-118.054-162.573-1.03,0-3.111,1.03-4.141,1.03-73.525,18.644-67.304,162.583-48.67,231.957l159.472-49.7Z"/>
+          <path d="M1250.416,730.163c-76.626,26.925-258.883,36.247-258.883-164.644v-178.116c0-32.097-13.463-92.159-79.736-98.37-52.811-4.141-100.441,50.74-100.441,97.34v244.38c0,6.211-3.111,65.243,61.093,71.454,5.181,1.03,11.392,6.211,11.392,13.463s-5.181,13.463-12.432,13.463h-318.935c-7.251,0-13.463-6.211-13.463-13.463s5.171-12.432,12.423-13.463c36.247-4.141,60.062-30.026,61.102-69.384V334.593s1.03-54.881-56.961-52.811c-9.312,0-16.564-6.211-16.564-15.533,0-7.242,5.171-13.463,12.423-14.493l259.923-40.388v65.243s47.63-66.273,162.573-65.243c106.662,2.07,216.424,68.344,216.424,178.116l-1.03,214.344c0,112.873,61.093,126.336,61.093,126.336Z"/>
+          <path d="M1794.492,546.942c-33.137,63.173-130.361,188.402-284.642,188.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.436-267.164,289.949-266.124h3.101c72.494-1.04,139.798,24.855,190.539,65.233,76.635,63.173,37.278,124.265-39.348,138.768h-3.111c-36.238,5.171-71.445-16.573-83.867-50.74-21.754-61.102-55.931-109.772-101.49-102.521-1.04,0-3.101,0-4.141,1.03-88.018,26.925-61.093,210.213-34.167,274.416,40.378,97.34,183.162,147.116,338.493,3.177,10.362-9.322,25.895,3.101,19.674,14.493Z"/>
+          <path d="M2349.66,470.25c0,151.191-131.507,273.376-290.979,273.376s-290.989-122.185-290.989-273.376,129.446-273.376,289.959-273.376h3.101c159.463,0,288.909,122.185,288.909,273.376Zm-198.82,0c0-67.314-12.432-223.675-90.088-223.675h-4.141c-77.666,0-90.098,156.362-90.098,223.675s12.432,223.675,90.098,223.675h4.141c77.656,0,90.088-156.372,90.088-223.675Z"/>
+          <path d="M2782.269,394.655c-3.101,1.04-7.242,1.04-11.392,1.04-41.409,0-74.555-33.137-74.555-74.565,0-18.634,6.221-35.207,17.613-48.67-48.68-2.07-121.164,72.494-121.164,135.657v222.635c0,6.211-3.101,65.243,61.093,72.485,7.251,0,11.392,6.221,11.392,12.432v1.03c0,7.251-5.171,12.432-12.423,12.432h-318.945c-7.251,0-13.453-5.181-13.453-13.463,0-6.211,5.171-12.432,12.423-12.432,62.133-7.242,61.093-65.233,61.093-69.374V334.593s1.04-52.811-56.952-52.811c-8.282,0-15.533-5.171-16.564-13.463-1.04-8.282,5.171-15.533,12.423-16.564l259.913-40.388v66.273s57.992-78.696,162.573-65.233c117.014,14.493,113.913,176.036,26.925,182.247Z"/>
+          <path d="M3056.694,529.272c28.996,85.947,143.939,188.468,316.865,34.177,10.362-9.322,25.895,3.101,19.684,14.493-33.137,63.173-108.732,157.402-263.023,157.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.446-267.164,289.959-266.124h3.101c129.446-1.04,239.209,78.696,275.446,187.428,4.141,13.463-3.111,27.956-16.564,32.106l-334.478,106.652Zm144.97-92.159c8.282-3.111,13.472-12.423,11.392-20.714-17.594-82.837-57.992-172.925-118.044-162.573-1.04,0-3.111,1.03-4.141,1.03-73.525,18.644-67.314,162.583-48.68,231.957l159.472-49.7Z"/>
+        </svg>
+      </div>
+      <div class="brand-divider"></div>
+      <span class="brand-tag">Team Dashboard</span>
+    </div>
+    <div class="topbar-meta">Internal · <strong>Admin</strong></div>
+  </div>
+</header>
+
+<div class="header">
+  <div class="eyebrow">Team Roster</div>
+  <h1 class="page-title">Everyone on the team</h1>
+  <p class="page-subtitle">Quick links to each team member's onboarding portal. Use this to test, share with team members, and check their onboarding status at a glance.</p>
+
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-label">Total members</div>
+      <div class="stat-value" id="stat-total">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Active shows</div>
+      <div class="stat-value" id="stat-shows">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Fully onboarded</div>
+      <div class="stat-value" id="stat-complete">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar" id="filter-bar"></div>
+
+<div class="grid" id="grid">
+  <div class="loading-state">Loading team members…</div>
+</div>
+
+<script>
+  let allMembers = [];
+  let activeFilter = 'all';
+  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1zWj4EJGDrnylWFraI0gVceVTUw8n_Fl_TuGBpLrE3xI/edit';
+
+  (async function init() {
+    const grid = document.getElementById('grid');
+    try {
+      const response = await fetch('/.netlify/functions/get-all-team');
+      if (!response.ok) {
+        const errText = await response.text();
+        grid.innerHTML = '<div class="empty-state">Couldn\'t load team. Status: ' + response.status + '<br><small>' + escapeHtml(errText) + '</small></div>';
+        return;
+      }
+      const data = await response.json();
+      allMembers = data.team || [];
+      updateStats();
+      renderFilters();
+      renderGrid();
+    } catch (err) {
+      console.error(err);
+      grid.innerHTML = '<div class="empty-state">Error: ' + escapeHtml(err.message) + '</div>';
+    }
+  })();
+
+  function updateStats() {
+    document.getElementById('stat-total').textContent = allMembers.length;
+    const shows = new Set(allMembers.map(m => m['Show']).filter(Boolean));
+    document.getElementById('stat-shows').textContent = shows.size;
+    const complete = allMembers.filter(m =>
+      m['Training Completed'] && m['Background Check Completed'] && m['Bio'] && m['Headshot URL']
+    ).length;
+    document.getElementById('stat-complete').textContent = complete;
+  }
+
+  function renderFilters() {
+    const roleCounts = {};
+    allMembers.forEach(m => {
+      const r = m['Role'] || 'Unassigned';
+      roleCounts[r] = (roleCounts[r] || 0) + 1;
+    });
+
+    const bar = document.getElementById('filter-bar');
+    let html = '<button class="filter-chip ' + (activeFilter === 'all' ? 'active' : '') + '" data-filter="all">All<span class="count">' + allMembers.length + '</span></button>';
+    Object.keys(roleCounts).sort().forEach(role => {
+      html += '<button class="filter-chip ' + (activeFilter === role ? 'active' : '') + '" data-filter="' + escapeAttr(role) + '">' + escapeHtml(role) + '<span class="count">' + roleCounts[role] + '</span></button>';
+    });
+    bar.innerHTML = html;
+
+    bar.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        activeFilter = chip.dataset.filter;
+        renderFilters();
+        renderGrid();
+      });
+    });
+  }
+
+  function renderGrid() {
+    const grid = document.getElementById('grid');
+    const filtered = activeFilter === 'all'
+      ? allMembers
+      : allMembers.filter(m => (m['Role'] || 'Unassigned') === activeFilter);
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="empty-state">No team members in this filter.</div>' + renderAddCard();
+      return;
+    }
+
+    grid.innerHTML = filtered.map(renderCard).join('') + renderAddCard();
+  }
+
+  function renderCard(member) {
+    const name = member['Name'] || 'Unnamed';
+    const role = member['Role'] || 'Team Member';
+    const show = member['Show'] || '';
+    const slug = member['Portal URL Slug'] || '';
+    const roleClass = role.toLowerCase().replace(/\s+/g, '-');
+
+    const portalUrl = slug ? '/?director=' + encodeURIComponent(slug) : '#';
+
+    const statuses = [
+      { label: 'Training', done: !!member['Training Completed'] },
+      { label: 'Background check', done: !!member['Background Check Completed'] },
+      { label: 'Bio submitted', done: !!member['Bio'] },
+      { label: 'Headshot', done: !!member['Headshot URL'] },
+    ];
+
+    const statusHTML = statuses.map(s =>
+      '<div class="status-row">' +
+        '<span class="status-label">' + s.label + '</span>' +
+        '<span class="status-value' + (s.done ? ' done' : '') + '">' +
+          '<span class="status-dot"></span>' +
+          (s.done ? 'Done' : 'Pending') +
+        '</span>' +
+      '</div>'
+    ).join('');
+
+    const portalButton = slug
+      ? '<a class="btn" href="' + portalUrl + '" target="_blank" rel="noopener">Open Portal →</a>'
+      : '<button class="btn btn-disabled" disabled>No slug set</button>';
+
+    const copyButton = slug
+      ? '<button class="btn-icon" onclick="copyLink(\'' + escapeAttr(slug) + '\', this)" title="Copy share link">⎘</button>'
+      : '';
+
+    return [
+      '<div class="card">',
+        '<div class="card-header">',
+          '<div class="card-name-block">',
+            '<div class="card-title">' + escapeHtml(name) + '</div>',
+            '<div class="card-meta' + (show ? '' : ' card-meta-empty') + '">' + escapeHtml(show || 'No show assigned') + '</div>',
+          '</div>',
+          '<span class="role-badge ' + escapeAttr(roleClass) + '">' + escapeHtml(role) + '</span>',
+        '</div>',
+        '<div class="card-status">' + statusHTML + '</div>',
+        '<div class="card-actions">' + portalButton + copyButton + '</div>',
+      '</div>'
+    ].join('');
+  }
+
+  function renderAddCard() {
+    return '<a class="add-card" href="' + SHEET_URL + '" target="_blank" rel="noopener">' +
+      '<div class="plus">+</div>' +
+      '<div class="label">Add Team Member</div>' +
+      '<div class="hint">Opens Team Roster sheet</div>' +
+    '</a>';
+  }
+
+  function copyLink(slug, btn) {
+    const url = window.location.origin + '/?director=' + encodeURIComponent(slug);
+    navigator.clipboard.writeText(url).then(() => {
+      const original = btn.textContent;
+      btn.textContent = '✓';
+      btn.style.color = 'var(--green)';
+      btn.style.borderColor = 'var(--green)';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 1500);
+    });
+  }
+
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+  function escapeAttr(str) { return escapeHtml(str); }
+</script>
+
+</body>
+</html>
