@@ -1,29 +1,20 @@
 // ─────────────────────────────────────────────────────────────
 // get-director.js
 // ─────────────────────────────────────────────────────────────
-// Fetches a single director's data from the Director Roster Sheet.
-// Called by the portal frontend when a director visits their unique URL.
+// Fetches a single team member's data from the Team Roster Sheet.
+// Called by the portal frontend when a team member visits their
+// unique URL.
 //
 // Example call from frontend:
 //   /.netlify/functions/get-director?slug=randy-jo-sly-lion-king
 //
-// Returns JSON like:
-//   {
-//     "Name": "Randy Jo Sly",
-//     "Show": "The Lion King",
-//     "Portal URL Slug": "randy-jo-sly-lion-king",
-//     "Headshot URL": "",
-//     "Bio": "",
-//     "Director's Vision": "",
-//     "Training Completed": "",
-//     "Background Check Completed": "",
-//     "Date Created": "2026-05-06"
-//   }
+// Returns JSON with all columns from the matched row, keyed by
+// column header name.
 // ─────────────────────────────────────────────────────────────
 
 const { google } = require('googleapis');
 
-// The Director Roster Google Sheet ID
+// The Team Roster Google Sheet ID
 // (The bot has access via the Encore Portal folder it lives in)
 const SHEET_ID = '1zWj4EJGDrnylWFraI0gVceVTUw8n_Fl_TuGBpLrE3xI';
 
@@ -34,7 +25,6 @@ exports.handler = async (event) => {
   };
 
   try {
-    // 1. Get the slug from the URL query parameter
     const slug = event.queryStringParameters && event.queryStringParameters.slug;
     if (!slug) {
       return {
@@ -44,7 +34,6 @@ exports.handler = async (event) => {
       };
     }
 
-    // 2. Authenticate as the bot using the service account key from env vars
     const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
     const auth = new google.auth.GoogleAuth({
       credentials,
@@ -52,10 +41,10 @@ exports.handler = async (event) => {
     });
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // 3. Read all rows from the Director Roster (columns A through I)
+    // Read all columns A:Z so we don't miss anything as the sheet grows
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SHEET_ID,
-      range: 'A:I',
+      range: 'A:Z',
     });
 
     const rows = response.data.values || [];
@@ -63,11 +52,10 @@ exports.handler = async (event) => {
       return {
         statusCode: 404,
         headers,
-        body: JSON.stringify({ error: 'No directors found in the roster' }),
+        body: JSON.stringify({ error: 'No team members found in the roster' }),
       };
     }
 
-    // 4. First row is column headers; find the "Portal URL Slug" column index
     const columnHeaders = rows[0];
     const slugIndex = columnHeaders.indexOf('Portal URL Slug');
     if (slugIndex === -1) {
@@ -81,29 +69,27 @@ exports.handler = async (event) => {
       };
     }
 
-    // 5. Find the row whose slug matches the request
-    const directorRow = rows.find(
+    const memberRow = rows.find(
       (row, idx) => idx > 0 && row[slugIndex] === slug
     );
 
-    if (!directorRow) {
+    if (!memberRow) {
       return {
         statusCode: 404,
         headers,
-        body: JSON.stringify({ error: 'Director not found', slug }),
+        body: JSON.stringify({ error: 'Team member not found', slug }),
       };
     }
 
-    // 6. Build a clean object keyed by column header
-    const director = {};
+    const member = {};
     columnHeaders.forEach((header, idx) => {
-      director[header] = directorRow[idx] || '';
+      member[header] = memberRow[idx] || '';
     });
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify(director),
+      body: JSON.stringify(member),
     };
   } catch (error) {
     console.error('get-director error:', error);
