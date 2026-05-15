@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Encore Internal Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F4EFE6;
+    --cream-light: #FBF8F0;
+    --cream-dark: #E8E0CD;
+    --guava: #1F3540;
+    --guava-soft: #4A5C68;
+    --guava-muted: #7E8C95;
+    --line: #DDD2BA;
+    --berry: #387E7F;
+    --berry-dark: #2D6566;
+    --lemon: #F7B73D;
+    --green: #4F8A4A;
+    --plum: #6B3D5C;
+    --sensory: #D97757;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream); color: var(--guava);
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar { background: var(--guava); color: var(--cream-light); padding: 14px 0; border-bottom: 4px solid var(--berry); }
+  .topbar-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+  .brand-wrap { display: flex; align-items: center; gap: 16px; }
+  .brand-logo { height: 26px; width: auto; color: var(--cream-light); display: block; }
+  .brand-logo svg { height: 100%; width: auto; display: block; }
+  .brand-logo svg path { fill: currentColor; }
+  .brand-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.2); }
+  .brand-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--cream-dark); }
+  .topbar-meta { font-size: 13px; color: var(--cream-dark); font-weight: 500; }
+  .topbar-meta strong { color: var(--cream-light); font-weight: 700; }
+
+  /* ---------- HERO ---------- */
+  .hero { background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%); padding: 70px 0 50px; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(56,126,127,0.14) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--berry); margin-bottom: 14px; }
+  .hero-title { font-size: clamp(40px, 6vw, 64px); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 14px; color: var(--guava); }
+  .hero-title em { font-style: normal; color: var(--berry); }
+  .hero-subtitle { font-size: 17px; font-weight: 400; color: var(--guava-soft); max-width: 620px; line-height: 1.55; }
+
+  /* ---------- CONTAINER ---------- */
+  .container { max-width: 1180px; margin: 0 auto; padding: 50px 32px 100px; }
+  .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+  .section-heading h2 { font-size: 22px; font-weight: 800; color: var(--guava); letter-spacing: -0.015em; }
+  .section-heading .sub { font-size: 13px; color: var(--guava-muted); font-weight: 500; }
+  .section-block { margin-bottom: 56px; }
+  .section-block:last-child { margin-bottom: 0; }
+
+  /* ---------- FEATURED SHOW (big card) ---------- */
+  .featured { background: var(--cream-light); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: grid; grid-template-columns: 320px 1fr; transition: all 0.2s; cursor: pointer; }
+  .featured:hover { border-color: var(--berry); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(31,53,64,0.10); }
+  .featured-poster { aspect-ratio: 2/3; background: linear-gradient(135deg, var(--lemon) 0%, var(--sensory) 50%, var(--plum) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--guava); padding: 30px; text-align: center; position: relative; }
+  .featured-poster .poster-title { font-size: 36px; font-weight: 900; line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 10px; }
+  .featured-poster .poster-sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.7; }
+  .featured-body { padding: 38px 42px; display: flex; flex-direction: column; justify-content: center; }
+  .featured-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--lemon); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; }
+  .featured-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lemon); display: inline-block; box-shadow: 0 0 0 4px rgba(247,183,61,0.25); }
+  .featured-title { font-size: clamp(32px, 4vw, 44px); font-weight: 900; line-height: 1.0; letter-spacing: -0.025em; margin-bottom: 12px; color: var(--guava); }
+  .featured-tagline { font-size: 16px; color: var(--guava-soft); margin-bottom: 22px; line-height: 1.5; max-width: 480px; }
+  .featured-meta { display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 24px; }
+  .featured-meta-item .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); margin-bottom: 3px; }
+  .featured-meta-item .value { font-size: 15px; font-weight: 700; color: var(--guava); letter-spacing: -0.005em; }
+  .featured-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--guava); color: var(--cream-light); padding: 12px 22px; border-radius: 6px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; align-self: flex-start; transition: all 0.15s; }
+  .featured:hover .featured-cta { background: var(--berry); }
+  .featured-cta .arrow { font-size: 15px; }
+
+  /* ---------- SHOWS GRID ---------- */
+  .shows-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+  .show-card { background: var(--cream-light); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; transition: all 0.15s; display: flex; flex-direction: column; }
+  .show-card:hover { border-color: var(--berry); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(31,53,64,0.08); }
+  .show-poster { aspect-ratio: 5/3; display: flex; align-items: center; justify-content: center; color: var(--guava); padding: 20px; text-align: center; position: relative; }
+  .show-poster .poster-title { font-size: 22px; font-weight: 900; line-height: 0.95; letter-spacing: -0.02em; }
+  .show-poster.oz { background: linear-gradient(135deg, var(--green) 0%, var(--berry) 100%); color: var(--cream-light); }
+  .show-poster.annie { background: linear-gradient(135deg, var(--sensory) 0%, var(--lemon) 100%); }
+  .show-poster.matilda { background: linear-gradient(135deg, var(--plum) 0%, var(--guava) 100%); color: var(--cream-light); }
+  .show-poster.newsies { background: linear-gradient(135deg, var(--guava) 0%, var(--berry) 100%); color: var(--cream-light); }
+  .show-poster.add-new { background: var(--cream); border: 2px dashed var(--line); color: var(--guava-muted); }
+  .show-poster.add-new .plus { font-size: 36px; font-weight: 300; line-height: 1; }
+  .show-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
+  .show-status { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; padding: 3px 8px; border-radius: 3px; margin-bottom: 8px; align-self: flex-start; }
+  .show-status.current { background: var(--lemon); color: var(--guava); }
+  .show-status.upcoming { background: var(--berry); color: var(--cream-light); }
+  .show-status.planning { background: var(--cream-dark); color: var(--guava); }
+  .show-status.closed { background: var(--cream-dark); color: var(--guava-soft); }
+  .show-name { font-size: 16px; font-weight: 800; color: var(--guava); letter-spacing: -0.01em; margin-bottom: 3px; line-height: 1.2; }
+  .show-dates { font-size: 12.5px; color: var(--guava-soft); font-weight: 500; }
+  .show-card.add-new-card { cursor: pointer; }
+  .show-card.add-new-card .show-body { background: var(--cream); }
+  .show-card.add-new-card:hover { border-color: var(--berry); }
+  .show-card.add-new-card .show-name { color: var(--guava-soft); }
+
+  /* ---------- TWO-COLUMN UTILITY ROW ---------- */
+  .utility-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .utility-card { background: var(--cream-light); border: 1px solid var(--line); border-radius: 8px; padding: 32px 34px; transition: all 0.15s; display: flex; flex-direction: column; }
+  .utility-card:hover { border-color: var(--berry); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(31,53,64,0.08); }
+  .utility-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--berry); margin-bottom: 10px; }
+  .utility-title { font-size: 24px; font-weight: 800; color: var(--guava); letter-spacing: -0.015em; line-height: 1.15; margin-bottom: 10px; }
+  .utility-desc { font-size: 14px; color: var(--guava-soft); line-height: 1.55; margin-bottom: 22px; flex: 1; }
+  .utility-stats { display: flex; gap: 28px; margin-bottom: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .utility-stat .stat-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); margin-bottom: 3px; }
+  .utility-stat .stat-value { font-size: 22px; font-weight: 800; color: var(--guava); letter-spacing: -0.01em; line-height: 1; }
+  .utility-cta { display: inline-flex; align-items: center; gap: 8px; color: var(--berry); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; align-self: flex-start; }
+  .utility-cta .arrow { transition: transform 0.15s; }
+  .utility-card:hover .utility-cta .arrow { transform: translateX(3px); }
+
+  /* ---------- QUICK LINKS ---------- */
+  .quicklinks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .quicklink { background: var(--cream-light); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; transition: all 0.15s; }
+  .quicklink:hover { border-color: var(--berry); background: var(--cream); }
+  .quicklink-label { font-size: 13.5px; font-weight: 600; color: var(--guava); letter-spacing: -0.005em; }
+  .quicklink .arrow { color: var(--guava-muted); font-size: 14px; }
+  .quicklink:hover .arrow { color: var(--berry); }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--guava); color: var(--cream-dark); padding: 50px 32px; text-align: center; font-size: 0.82rem; }
+  footer .footer-logo { display: inline-block; height: 32px; width: auto; color: var(--cream-light); margin-bottom: 4px; }
+  footer .footer-logo svg { height: 100%; width: auto; display: block; }
+  footer .footer-logo svg path { fill: currentColor; }
+  footer .brand-footer-sub { font-family: 'Outfit', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--cream-dark); margin-bottom: 14px; }
+  footer .footer-tagline { font-style: italic; color: var(--lemon); font-size: 0.95rem; margin-bottom: 14px; }
+  footer p { margin-bottom: 6px; }
+  footer a { color: var(--cream-light); text-decoration: underline; }
+  .footer-fineprint { font-size: 11px; color: var(--guava-muted); margin-top: 12px; text-transform: uppercase; letter-spacing: 0.16em; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .featured { grid-template-columns: 1fr; }
+    .featured-poster { aspect-ratio: 16/9; }
+    .featured-body { padding: 30px 28px; }
+    .utility-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== TOP BAR ========== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-wrap">
+      <div class="brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3645.525 744.452" aria-label="Encore">
+          <path d="M3625.374,637.942c0,53.14-26.564,79.693-79.693,79.693-56.409,0-84.608-26.553-84.608-79.693s28.199-79.705,84.608-79.705c53.129,0,79.693,26.576,79.693,79.705Zm-109.548-137.771c-12.967-86.288-23.803-154.301-32.432-204.001-8.66-49.71-15.691-88.368-21.079-115.983-5.418-27.606-9.192-48.32-11.354-62.133-2.161-13.803-3.226-27.965-3.226-42.459,0-50.39,32.95-75.595,98.895-75.595s98.895,25.205,98.895,75.595c0,14.493-1.081,28.656-3.226,42.459-2.192,13.813-6.24,34.527-12.175,62.133-5.936,27.616-14.337,66.273-25.127,115.983-10.821,49.7-24.32,117.714-40.529,204.001h-48.641Z"/>
+          <path d="M217.454,529.272c29.006,85.947,143.939,188.468,316.874,34.177,10.352-9.322,25.885,3.101,19.674,14.493-33.137,63.173-108.722,157.402-263.023,157.402C131.507,735.344,0,616.26,0,469.21,0,321.13,129.446,202.046,289.949,203.086h3.111c129.436-1.04,239.199,78.696,275.436,187.428,4.151,13.463-3.101,27.956-16.564,32.106l-334.478,106.652Zm144.979-92.159c8.282-3.111,13.463-12.423,11.392-20.714-17.604-82.837-57.992-172.925-118.054-162.573-1.03,0-3.111,1.03-4.141,1.03-73.525,18.644-67.304,162.583-48.67,231.957l159.472-49.7Z"/>
+          <path d="M1250.416,730.163c-76.626,26.925-258.883,36.247-258.883-164.644v-178.116c0-32.097-13.463-92.159-79.736-98.37-52.811-4.141-100.441,50.74-100.441,97.34v244.38c0,6.211-3.111,65.243,61.093,71.454,5.181,1.03,11.392,6.211,11.392,13.463s-5.181,13.463-12.432,13.463h-318.935c-7.251,0-13.463-6.211-13.463-13.463s5.171-12.432,12.423-13.463c36.247-4.141,60.062-30.026,61.102-69.384V334.593s1.03-54.881-56.961-52.811c-9.312,0-16.564-6.211-16.564-15.533,0-7.242,5.171-13.463,12.423-14.493l259.923-40.388v65.243s47.63-66.273,162.573-65.243c106.662,2.07,216.424,68.344,216.424,178.116l-1.03,214.344c0,112.873,61.093,126.336,61.093,126.336Z"/>
+          <path d="M1794.492,546.942c-33.137,63.173-130.361,188.402-284.642,188.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.436-267.164,289.949-266.124h3.101c72.494-1.04,139.798,24.855,190.539,65.233,76.635,63.173,37.278,124.265-39.348,138.768h-3.111c-36.238,5.171-71.445-16.573-83.867-50.74-21.754-61.102-55.931-109.772-101.49-102.521-1.04,0-3.101,0-4.141,1.03-88.018,26.925-61.093,210.213-34.167,274.416,40.378,97.34,183.162,147.116,338.493,3.177,10.362-9.322,25.895,3.101,19.674,14.493Z"/>
+          <path d="M2349.66,470.25c0,151.191-131.507,273.376-290.979,273.376s-290.989-122.185-290.989-273.376,129.446-273.376,289.959-273.376h3.101c159.463,0,288.909,122.185,288.909,273.376Zm-198.82,0c0-67.314-12.432-223.675-90.088-223.675h-4.141c-77.666,0-90.098,156.362-90.098,223.675s12.432,223.675,90.098,223.675h4.141c77.656,0,90.088-156.372,90.088-223.675Z"/>
+          <path d="M2782.269,394.655c-3.101,1.04-7.242,1.04-11.392,1.04-41.409,0-74.555-33.137-74.555-74.565,0-18.634,6.221-35.207,17.613-48.67-48.68-2.07-121.164,72.494-121.164,135.657v222.635c0,6.211-3.101,65.243,61.093,72.485,7.251,0,11.392,6.221,11.392,12.432v1.03c0,7.251-5.171,12.432-12.423,12.432h-318.945c-7.251,0-13.453-5.181-13.453-13.463,0-6.211,5.171-12.432,12.423-12.432,62.133-7.242,61.093-65.233,61.093-69.374V334.593s1.04-52.811-56.952-52.811c-8.282,0-15.533-5.171-16.564-13.463-1.04-8.282,5.171-15.533,12.423-16.564l259.913-40.388v66.273s57.992-78.696,162.573-65.233c117.014,14.493,113.913,176.036,26.925,182.247Z"/>
+          <path d="M3056.694,529.272c28.996,85.947,143.939,188.468,316.865,34.177,10.362-9.322,25.895,3.101,19.684,14.493-33.137,63.173-108.732,157.402-263.023,157.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.446-267.164,289.959-266.124h3.101c129.446-1.04,239.209,78.696,275.446,187.428,4.141,13.463-3.111,27.956-16.564,32.106l-334.478,106.652Zm144.97-92.159c8.282-3.111,13.472-12.423,11.392-20.714-17.594-82.837-57.992-172.925-118.044-162.573-1.04,0-3.111,1.03-4.141,1.03-73.525,18.644-67.314,162.583-48.68,231.957l159.472-49.7Z"/>
+        </svg>
+      </div>
+      <div class="brand-divider"></div>
+      <span class="brand-tag">Internal Portal</span>
+    </div>
+    <div class="topbar-meta">Welcome, <strong>Admin</strong></div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Encore Performing Arts</div>
+    <h1 class="hero-title">Everything we do, <em>in one place</em>.</h1>
+    <p class="hero-subtitle">The internal hub for shows, team members, onboarding, and resources. Use this to navigate between current productions, the team roster, and shared docs.</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- ========== FEATURED CURRENT SHOW ========== -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2>In Production</h2>
+      <span class="sub">Currently in rehearsal</span>
+    </div>
+
+    <a href="/show.html?slug=lion-king-fall-2026" class="featured">
+      <div class="featured-poster">
+        <div class="poster-title">THE<br/>LION<br/>KING</div>
+        <div class="poster-sub">Fall 2026</div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-eyebrow">Now in rehearsal</div>
+        <div class="featured-title">The Lion King</div>
+        <p class="featured-tagline">A story of legacy, courage, and finding your place in the circle. Performed by the young artists of Encore on the Electric Theater stage.</p>
+        <div class="featured-meta">
+          <div class="featured-meta-item">
+            <div class="label">Run</div>
+            <div class="value">Oct 15 – Nov 2</div>
+          </div>
+          <div class="featured-meta-item">
+            <div class="label">Opening</div>
+            <div class="value">Oct 15 · 7:30 pm</div>
+          </div>
+          <div class="featured-meta-item">
+            <div class="label">Cast &amp; Crew</div>
+            <div class="value">44 people</div>
+          </div>
+          <div class="featured-meta-item">
+            <div class="label">Director</div>
+            <div class="value">Sarah Jones</div>
+          </div>
+        </div>
+        <span class="featured-cta">Open show page <span class="arrow">→</span></span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ========== ALL SHOWS ========== -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2>All Productions</h2>
+      <span class="sub">Past, present, and upcoming</span>
+    </div>
+
+    <div class="shows-grid">
+
+      <a href="/show.html?slug=lion-king-fall-2026" class="show-card">
+        <div class="show-poster" style="background: linear-gradient(135deg, var(--lemon) 0%, var(--sensory) 50%, var(--plum) 100%);">
+          <div class="poster-title">THE LION KING</div>
+        </div>
+        <div class="show-body">
+          <span class="show-status current">In Production</span>
+          <div class="show-name">The Lion King</div>
+          <div class="show-dates">Oct 15 – Nov 2, 2026</div>
+        </div>
+      </a>
+
+      <a href="#" class="show-card">
+        <div class="show-poster newsies">
+          <div class="poster-title">NEWSIES</div>
+        </div>
+        <div class="show-body">
+          <span class="show-status upcoming">Upcoming</span>
+          <div class="show-name">Newsies</div>
+          <div class="show-dates">Feb 12 – Mar 1, 2027</div>
+        </div>
+      </a>
+
+      <a href="#" class="show-card">
+        <div class="show-poster oz">
+          <div class="poster-title">WIZARD OF OZ</div>
+        </div>
+        <div class="show-body">
+          <span class="show-status planning">In Planning</span>
+          <div class="show-name">The Wizard of Oz</div>
+          <div class="show-dates">Spring 2027 · TBD</div>
+        </div>
+      </a>
+
+      <a href="#" class="show-card">
+        <div class="show-poster matilda">
+          <div class="poster-title">MATILDA</div>
+        </div>
+        <div class="show-body">
+          <span class="show-status closed">Closed</span>
+          <div class="show-name">Matilda the Musical</div>
+          <div class="show-dates">Apr 18 – May 4, 2026</div>
+        </div>
+      </a>
+
+      <a href="#" class="show-card">
+        <div class="show-poster annie">
+          <div class="poster-title">ANNIE</div>
+        </div>
+        <div class="show-body">
+          <span class="show-status closed">Closed</span>
+          <div class="show-name">Annie</div>
+          <div class="show-dates">Oct 24 – Nov 9, 2025</div>
+        </div>
+      </a>
+
+      <a href="#" class="show-card add-new-card">
+        <div class="show-poster add-new">
+          <div class="plus">+</div>
+        </div>
+        <div class="show-body">
+          <span class="show-status planning">New</span>
+          <div class="show-name">Add a show</div>
+          <div class="show-dates">Create a new production page</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ========== TEAM + RESOURCES ========== -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2>The People &amp; The Paperwork</h2>
+      <span class="sub">Roster + shared resources</span>
+    </div>
+
+    <div class="utility-row">
+
+      <a href="/dashboard.html" class="utility-card">
+        <div class="utility-eyebrow">Team Roster</div>
+        <div class="utility-title">Everyone on the team</div>
+        <p class="utility-desc">Directors, designers, stage managers, technical staff, cast. Search by name or role, see onboarding status at a glance, and jump to anyone's portal page. Add new team members directly from the dashboard.</p>
+        <div class="utility-stats">
+          <div class="utility-stat">
+            <div class="stat-label">Members</div>
+            <div class="stat-value">—</div>
+          </div>
+          <div class="utility-stat">
+            <div class="stat-label">Active shows</div>
+            <div class="stat-value">—</div>
+          </div>
+          <div class="utility-stat">
+            <div class="stat-label">Onboarded</div>
+            <div class="stat-value">—</div>
+          </div>
+        </div>
+        <span class="utility-cta">Open team dashboard <span class="arrow">→</span></span>
+      </a>
+
+      <a href="#" class="utility-card">
+        <div class="utility-eyebrow">Handbook &amp; Standards</div>
+        <div class="utility-title">How we do things at Encore</div>
+        <p class="utility-desc">The director handbook, S.T.A.G.E. curriculum, mission and Ten Commandments, child safety policies, best practices, and the standards every team member is held to. Read it, bookmark it, refer back to it.</p>
+        <div class="utility-stats">
+          <div class="utility-stat">
+            <div class="stat-label">Sections</div>
+            <div class="stat-value">7</div>
+          </div>
+          <div class="utility-stat">
+            <div class="stat-label">Last updated</div>
+            <div class="stat-value" style="font-size: 14px; font-weight: 700;">May 2026</div>
+          </div>
+        </div>
+        <span class="utility-cta">Open handbook <span class="arrow">→</span></span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ========== QUICK LINKS ========== -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2>Quick Links</h2>
+      <span class="sub">Shared docs &amp; tools</span>
+    </div>
+
+    <div class="quicklinks-grid">
+      <a href="#" class="quicklink" target="_blank">
+        <span class="quicklink-label">Production Calendar (BAND)</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#" class="quicklink" target="_blank">
+        <span class="quicklink-label">Encore Drive Folder</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="/child-safety-training.html" class="quicklink">
+        <span class="quicklink-label">Child Safety Training</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="#" class="quicklink" target="_blank">
+        <span class="quicklink-label">S.T.A.G.E. Curriculum</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#" class="quicklink" target="_blank">
+        <span class="quicklink-label">Electric Theater Info</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#" class="quicklink" target="_blank">
+        <span class="quicklink-label">Costume &amp; Props Partners</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="https://encorepa.org" class="quicklink" target="_blank">
+        <span class="quicklink-label">encorepa.org (Public)</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="mailto:hello@encorepa.org" class="quicklink">
+        <span class="quicklink-label">Email Encore HQ</span>
+        <span class="arrow">✉</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3645.525 744.452" aria-label="Encore">
+      <path d="M3625.374,637.942c0,53.14-26.564,79.693-79.693,79.693-56.409,0-84.608-26.553-84.608-79.693s28.199-79.705,84.608-79.705c53.129,0,79.693,26.576,79.693,79.705Zm-109.548-137.771c-12.967-86.288-23.803-154.301-32.432-204.001-8.66-49.71-15.691-88.368-21.079-115.983-5.418-27.606-9.192-48.32-11.354-62.133-2.161-13.803-3.226-27.965-3.226-42.459,0-50.39,32.95-75.595,98.895-75.595s98.895,25.205,98.895,75.595c0,14.493-1.081,28.656-3.226,42.459-2.192,13.813-6.24,34.527-12.175,62.133-5.936,27.616-14.337,66.273-25.127,115.983-10.821,49.7-24.32,117.714-40.529,204.001h-48.641Z"/>
+      <path d="M217.454,529.272c29.006,85.947,143.939,188.468,316.874,34.177,10.352-9.322,25.885,3.101,19.674,14.493-33.137,63.173-108.722,157.402-263.023,157.402C131.507,735.344,0,616.26,0,469.21,0,321.13,129.446,202.046,289.949,203.086h3.111c129.436-1.04,239.199,78.696,275.436,187.428,4.151,13.463-3.101,27.956-16.564,32.106l-334.478,106.652Zm144.979-92.159c8.282-3.111,13.463-12.423,11.392-20.714-17.604-82.837-57.992-172.925-118.054-162.573-1.03,0-3.111,1.03-4.141,1.03-73.525,18.644-67.304,162.583-48.67,231.957l159.472-49.7Z"/>
+      <path d="M1250.416,730.163c-76.626,26.925-258.883,36.247-258.883-164.644v-178.116c0-32.097-13.463-92.159-79.736-98.37-52.811-4.141-100.441,50.74-100.441,97.34v244.38c0,6.211-3.111,65.243,61.093,71.454,5.181,1.03,11.392,6.211,11.392,13.463s-5.181,13.463-12.432,13.463h-318.935c-7.251,0-13.463-6.211-13.463-13.463s5.171-12.432,12.423-13.463c36.247-4.141,60.062-30.026,61.102-69.384V334.593s1.03-54.881-56.961-52.811c-9.312,0-16.564-6.211-16.564-15.533,0-7.242,5.171-13.463,12.423-14.493l259.923-40.388v65.243s47.63-66.273,162.573-65.243c106.662,2.07,216.424,68.344,216.424,178.116l-1.03,214.344c0,112.873,61.093,126.336,61.093,126.336Z"/>
+      <path d="M1794.492,546.942c-33.137,63.173-130.361,188.402-284.642,188.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.436-267.164,289.949-266.124h3.101c72.494-1.04,139.798,24.855,190.539,65.233,76.635,63.173,37.278,124.265-39.348,138.768h-3.111c-36.238,5.171-71.445-16.573-83.867-50.74-21.754-61.102-55.931-109.772-101.49-102.521-1.04,0-3.101,0-4.141,1.03-88.018,26.925-61.093,210.213-34.167,274.416,40.378,97.34,183.162,147.116,338.493,3.177,10.362-9.322,25.895,3.101,19.674,14.493Z"/>
+      <path d="M2349.66,470.25c0,151.191-131.507,273.376-290.979,273.376s-290.989-122.185-290.989-273.376,129.446-273.376,289.959-273.376h3.101c159.463,0,288.909,122.185,288.909,273.376Zm-198.82,0c0-67.314-12.432-223.675-90.088-223.675h-4.141c-77.666,0-90.098,156.362-90.098,223.675s12.432,223.675,90.098,223.675h4.141c77.656,0,90.088-156.372,90.088-223.675Z"/>
+      <path d="M2782.269,394.655c-3.101,1.04-7.242,1.04-11.392,1.04-41.409,0-74.555-33.137-74.555-74.565,0-18.634,6.221-35.207,17.613-48.67-48.68-2.07-121.164,72.494-121.164,135.657v222.635c0,6.211-3.101,65.243,61.093,72.485,7.251,0,11.392,6.221,11.392,12.432v1.03c0,7.251-5.171,12.432-12.423,12.432h-318.945c-7.251,0-13.453-5.181-13.453-13.463,0-6.211,5.171-12.432,12.423-12.432,62.133-7.242,61.093-65.233,61.093-69.374V334.593s1.04-52.811-56.952-52.811c-8.282,0-15.533-5.171-16.564-13.463-1.04-8.282,5.171-15.533,12.423-16.564l259.913-40.388v66.273s57.992-78.696,162.573-65.233c117.014,14.493,113.913,176.036,26.925,182.247Z"/>
+      <path d="M3056.694,529.272c28.996,85.947,143.939,188.468,316.865,34.177,10.362-9.322,25.895,3.101,19.684,14.493-33.137,63.173-108.732,157.402-263.023,157.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.446-267.164,289.959-266.124h3.101c129.446-1.04,239.209,78.696,275.446,187.428,4.141,13.463-3.111,27.956-16.564,32.106l-334.478,106.652Zm144.97-92.159c8.282-3.111,13.472-12.423,11.392-20.714-17.594-82.837-57.992-172.925-118.044-162.573-1.04,0-3.111,1.03-4.141,1.03-73.525,18.644-67.314,162.583-48.68,231.957l159.472-49.7Z"/>
+    </svg>
+  </div>
+  <div class="brand-footer-sub">Performing Arts</div>
+  <div class="footer-tagline">We teach life skills through stage skills.</div>
+  <p>Questions? Reach out to us at <a href="mailto:hello@encorepa.org">hello@encorepa.org</a> or visit <a href="https://encorepa.org" target="_blank">encorepa.org</a>.</p>
+  <div class="footer-fineprint">Encore Internal Portal</div>
+</footer>
+
+<!-- ========== LIVE TEAM STATS ========== -->
+<script>
+  // Pulls live team stats from the existing get-all-team function
+  (async function loadTeamStats() {
+    try {
+      const res = await fetch('/.netlify/functions/get-all-team');
+      if (!res.ok) return;
+      const data = await res.json();
+      const team = data.team || [];
+
+      const stats = document.querySelectorAll('.utility-stat .stat-value');
+      if (stats.length >= 3) {
+        // Members
+        stats[0].textContent = team.length;
+        // Active shows (unique non-empty Show values)
+        const shows = new Set(team.map(m => m['Show']).filter(Boolean));
+        stats[1].textContent = shows.size;
+        // Fully onboarded
+        const complete = team.filter(m =>
+          m['Training Completed'] && m['Background Check Completed'] && m['Bio'] && m['Headshot URL']
+        ).length;
+        stats[2].textContent = complete;
+      }
+    } catch (err) {
+      console.error('Stats fetch failed:', err);
+    }
+  })();
+</script>
+
+<script src="/nav.js" defer></script>
+
+</body>
+</html>

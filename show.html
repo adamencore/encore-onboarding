@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Lion King — Encore Show Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F4EFE6;
+    --cream-light: #FBF8F0;
+    --cream-dark: #E8E0CD;
+    --guava: #1F3540;
+    --guava-soft: #4A5C68;
+    --guava-muted: #7E8C95;
+    --line: #DDD2BA;
+    --berry: #387E7F;
+    --berry-dark: #2D6566;
+    --lemon: #F7B73D;
+    --green: #4F8A4A;
+    --plum: #6B3D5C;
+    --sensory: #D97757;
+    --asl: #6B3D5C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream); color: var(--guava);
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar { background: var(--guava); color: var(--cream-light); padding: 14px 0; border-bottom: 4px solid var(--berry); }
+  .topbar-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+  .brand-wrap { display: flex; align-items: center; gap: 16px; }
+  .brand-logo { height: 26px; width: auto; color: var(--cream-light); display: block; }
+  .brand-logo svg { height: 100%; width: auto; display: block; }
+  .brand-logo svg path { fill: currentColor; }
+  .brand-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.2); }
+  .brand-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--cream-dark); }
+  .topbar-meta { font-size: 13px; color: var(--cream-dark); font-weight: 500; }
+  .topbar-meta strong { color: var(--cream-light); font-weight: 700; }
+
+  /* ---------- HERO ---------- */
+  .hero { background: linear-gradient(135deg, var(--guava) 0%, var(--plum) 100%); color: var(--cream-light); padding: 80px 0 70px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -150px; right: -150px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(247,183,61,0.18) 0%, transparent 70%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: -200px; left: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(56,126,127,0.20) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; display: grid; grid-template-columns: 1fr 220px; gap: 60px; align-items: center; }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--lemon); margin-bottom: 18px; }
+  .hero-title { font-size: clamp(48px, 8vw, 84px); font-weight: 900; line-height: 0.95; letter-spacing: -0.035em; margin-bottom: 18px; }
+  .hero-title em { font-style: normal; color: var(--lemon); }
+  .hero-tagline { font-size: 19px; font-weight: 500; color: var(--cream-light); margin-bottom: 28px; max-width: 540px; line-height: 1.5; opacity: 0.92; }
+  .hero-dates { display: inline-flex; align-items: center; gap: 14px; background: rgba(251,248,240,0.08); border: 1px solid rgba(251,248,240,0.18); padding: 12px 22px; border-radius: 6px; backdrop-filter: blur(4px); }
+  .hero-dates .label { text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px; color: var(--lemon); font-weight: 700; }
+  .hero-dates .range { font-size: 16px; font-weight: 700; color: var(--cream-light); letter-spacing: -0.01em; }
+  .hero-poster { width: 100%; aspect-ratio: 2/3; border-radius: 6px; background: linear-gradient(135deg, var(--lemon) 0%, var(--sensory) 50%, var(--plum) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--guava); padding: 24px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; }
+  .hero-poster .poster-title { font-size: 28px; font-weight: 900; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .hero-poster .poster-sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.7; }
+  .hero-poster .poster-note { position: absolute; bottom: 14px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.5; }
+
+  /* ---------- AT-A-GLANCE STRIP ---------- */
+  .glance { background: var(--cream-light); border-bottom: 1px solid var(--line); padding: 28px 0; }
+  .glance-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+  .glance-stat .glance-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); margin-bottom: 6px; }
+  .glance-stat .glance-value { font-size: 18px; font-weight: 700; color: var(--guava); letter-spacing: -0.01em; line-height: 1.2; }
+  .glance-stat .glance-sub { font-size: 12px; font-weight: 500; color: var(--guava-soft); margin-top: 2px; }
+
+  /* ---------- LAYOUT ---------- */
+  .layout { max-width: 1180px; margin: 0 auto; padding: 50px 32px 100px; display: grid; grid-template-columns: 240px 1fr; gap: 50px; align-items: start; }
+  .sidebar { position: sticky; top: 24px; }
+  .sidebar-block { background: var(--cream-light); border: 1px solid var(--line); border-radius: 8px; padding: 22px; margin-bottom: 20px; }
+  .sidebar-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); margin-bottom: 14px; }
+  .jump-list { list-style: none; }
+  .jump-list li { border-top: 1px solid var(--line); }
+  .jump-list li:first-child { border-top: none; }
+  .jump-list a { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; color: var(--guava); text-decoration: none; font-size: 13.5px; font-weight: 600; transition: color 0.12s; }
+  .jump-list a:hover { color: var(--berry); }
+  .jump-list .arrow { color: var(--guava-muted); font-size: 13px; font-weight: 500; }
+  .jump-list a:hover .arrow { color: var(--berry); }
+
+  .resources { list-style: none; }
+  .resources li { border-top: 1px solid var(--line); }
+  .resources li:first-child { border-top: none; }
+  .resources a { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; color: var(--guava); text-decoration: none; font-size: 13px; font-weight: 600; transition: color 0.12s; }
+  .resources a:hover { color: var(--berry); }
+  .resources .arrow { color: var(--guava-muted); font-size: 13px; font-weight: 500; }
+  .resources a:hover .arrow { color: var(--berry); }
+
+  /* ---------- MAIN ---------- */
+  .main { min-width: 0; }
+  .section { background: var(--cream-light); border: 1px solid var(--line); border-radius: 8px; padding: 44px 48px; margin-bottom: 24px; scroll-margin-top: 24px; }
+  .section-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--berry); margin-bottom: 14px; }
+  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.05; margin-bottom: 24px; color: var(--guava); letter-spacing: -0.02em; }
+  .section p { margin-bottom: 1rem; color: var(--guava-soft); font-size: 15px; font-weight: 400; line-height: 1.6; }
+  .section p:last-child { margin-bottom: 0; }
+  .section h3 { font-size: 20px; font-weight: 700; margin: 1.8rem 0 0.6rem; color: var(--guava); letter-spacing: -0.01em; }
+
+  /* ---------- MISSION ---------- */
+  .mission-quote { font-size: 22px; font-weight: 500; line-height: 1.45; color: var(--guava); letter-spacing: -0.01em; padding: 24px 28px; background: var(--cream); border-left: 4px solid var(--berry); border-radius: 4px; margin: 20px 0; }
+  .mission-quote em { font-style: italic; color: var(--berry); font-weight: 600; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline { position: relative; padding-left: 0; }
+  .timeline-phase { margin-bottom: 28px; }
+  .timeline-phase:last-child { margin-bottom: 0; }
+  .phase-label { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--guava); background: var(--cream-dark); padding: 5px 12px; border-radius: 3px; margin-bottom: 14px; }
+  .phase-list { list-style: none; border-left: 2px solid var(--line); padding-left: 24px; margin-left: 8px; }
+  .phase-item { position: relative; padding: 8px 0; display: grid; grid-template-columns: 160px 1fr; gap: 20px; align-items: baseline; }
+  .phase-item::before { content: ''; position: absolute; left: -32px; top: 16px; width: 10px; height: 10px; border-radius: 50%; background: var(--cream-light); border: 2px solid var(--berry); }
+  .phase-item.highlight::before { background: var(--lemon); border-color: var(--lemon); width: 14px; height: 14px; left: -34px; top: 14px; }
+  .phase-date { font-size: 13px; font-weight: 700; color: var(--berry); letter-spacing: -0.005em; font-variant-numeric: tabular-nums; }
+  .phase-event { font-size: 15px; font-weight: 600; color: var(--guava); }
+  .phase-event .meta { display: block; font-size: 13px; font-weight: 400; color: var(--guava-soft); margin-top: 2px; }
+
+  /* ---------- PERFORMANCE SCHEDULE ---------- */
+  .perf-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .perf-table th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--guava-muted); padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .perf-table td { padding: 14px 12px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: middle; }
+  .perf-table tr:last-child td { border-bottom: none; }
+  .perf-table tr:hover td { background: var(--cream); }
+  .perf-date { font-weight: 700; color: var(--guava); font-variant-numeric: tabular-nums; }
+  .perf-day { font-size: 12px; font-weight: 500; color: var(--guava-muted); margin-left: 4px; }
+  .perf-time { color: var(--guava-soft); font-variant-numeric: tabular-nums; font-weight: 500; }
+  .perf-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .perf-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 9px; border-radius: 3px; }
+  .perf-badge.opening { background: var(--lemon); color: var(--guava); }
+  .perf-badge.closing { background: var(--guava); color: var(--cream-light); }
+  .perf-badge.sensory { background: var(--sensory); color: var(--cream-light); }
+  .perf-badge.asl { background: var(--asl); color: var(--cream-light); }
+  .perf-badge.matinee { background: var(--cream-dark); color: var(--guava); }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; padding: 16px 20px; background: var(--cream); border-radius: 6px; border: 1px solid var(--line); }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--guava-soft); }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+  .legend-dot.sensory { background: var(--sensory); }
+  .legend-dot.asl { background: var(--asl); }
+  .legend-dot.opening { background: var(--lemon); }
+  .legend-dot.closing { background: var(--guava); }
+
+  /* ---------- TEAM ---------- */
+  .team-group { margin-bottom: 32px; }
+  .team-group:last-child { margin-bottom: 0; }
+  .team-group-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--guava); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .team-card { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s; text-decoration: none; color: inherit; }
+  .team-card:hover { border-color: var(--berry); background: var(--cream-light); transform: translateY(-1px); }
+  .team-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--berry) 0%, var(--plum) 100%); color: var(--cream-light); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; letter-spacing: -0.01em; }
+  .team-info { min-width: 0; flex: 1; }
+  .team-name { font-size: 14px; font-weight: 700; color: var(--guava); letter-spacing: -0.005em; margin-bottom: 2px; line-height: 1.25; }
+  .team-role { font-size: 12px; font-weight: 500; color: var(--guava-soft); line-height: 1.3; }
+  .team-arrow { color: var(--guava-muted); font-size: 14px; align-self: center; transition: color 0.15s; }
+  .team-card:hover .team-arrow { color: var(--berry); }
+
+  /* ---------- NOTES ---------- */
+  .notes-callout { background: var(--cream); border: 1px dashed var(--line); border-radius: 6px; padding: 22px 26px; margin-top: 8px; }
+  .notes-callout p { color: var(--guava-soft); font-size: 14px; line-height: 1.6; margin-bottom: 0.8rem; }
+  .notes-callout p:last-child { margin-bottom: 0; }
+  .notes-callout strong { color: var(--guava); }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--guava); color: var(--cream-dark); padding: 50px 32px; text-align: center; font-size: 0.82rem; }
+  footer .footer-logo { display: inline-block; height: 32px; width: auto; color: var(--cream-light); margin-bottom: 4px; }
+  footer .footer-logo svg { height: 100%; width: auto; display: block; }
+  footer .footer-logo svg path { fill: currentColor; }
+  footer .brand-footer-sub { font-family: 'Outfit', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--cream-dark); margin-bottom: 14px; }
+  footer .footer-tagline { font-style: italic; color: var(--lemon); font-size: 0.95rem; margin-bottom: 14px; }
+  footer p { margin-bottom: 6px; }
+  footer a { color: var(--cream-light); text-decoration: underline; }
+  .footer-fineprint { font-size: 11px; color: var(--guava-muted); margin-top: 12px; text-transform: uppercase; letter-spacing: 0.16em; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 960px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-poster { max-width: 220px; }
+    .glance-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .layout { grid-template-columns: 1fr; gap: 24px; }
+    .sidebar { position: static; }
+    .section { padding: 32px 28px; }
+    .phase-item { grid-template-columns: 1fr; gap: 4px; }
+    .phase-date { font-size: 12px; }
+  }
+  @media (max-width: 560px) {
+    .glance-inner { grid-template-columns: 1fr 1fr; }
+    .perf-table th:nth-child(3), .perf-table td:nth-child(3) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== TOP BAR ========== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-wrap">
+      <div class="brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3645.525 744.452" aria-label="Encore">
+          <path d="M3625.374,637.942c0,53.14-26.564,79.693-79.693,79.693-56.409,0-84.608-26.553-84.608-79.693s28.199-79.705,84.608-79.705c53.129,0,79.693,26.576,79.693,79.705Zm-109.548-137.771c-12.967-86.288-23.803-154.301-32.432-204.001-8.66-49.71-15.691-88.368-21.079-115.983-5.418-27.606-9.192-48.32-11.354-62.133-2.161-13.803-3.226-27.965-3.226-42.459,0-50.39,32.95-75.595,98.895-75.595s98.895,25.205,98.895,75.595c0,14.493-1.081,28.656-3.226,42.459-2.192,13.813-6.24,34.527-12.175,62.133-5.936,27.616-14.337,66.273-25.127,115.983-10.821,49.7-24.32,117.714-40.529,204.001h-48.641Z"/>
+          <path d="M217.454,529.272c29.006,85.947,143.939,188.468,316.874,34.177,10.352-9.322,25.885,3.101,19.674,14.493-33.137,63.173-108.722,157.402-263.023,157.402C131.507,735.344,0,616.26,0,469.21,0,321.13,129.446,202.046,289.949,203.086h3.111c129.436-1.04,239.199,78.696,275.436,187.428,4.151,13.463-3.101,27.956-16.564,32.106l-334.478,106.652Zm144.979-92.159c8.282-3.111,13.463-12.423,11.392-20.714-17.604-82.837-57.992-172.925-118.054-162.573-1.03,0-3.111,1.03-4.141,1.03-73.525,18.644-67.304,162.583-48.67,231.957l159.472-49.7Z"/>
+          <path d="M1250.416,730.163c-76.626,26.925-258.883,36.247-258.883-164.644v-178.116c0-32.097-13.463-92.159-79.736-98.37-52.811-4.141-100.441,50.74-100.441,97.34v244.38c0,6.211-3.111,65.243,61.093,71.454,5.181,1.03,11.392,6.211,11.392,13.463s-5.181,13.463-12.432,13.463h-318.935c-7.251,0-13.463-6.211-13.463-13.463s5.171-12.432,12.423-13.463c36.247-4.141,60.062-30.026,61.102-69.384V334.593s1.03-54.881-56.961-52.811c-9.312,0-16.564-6.211-16.564-15.533,0-7.242,5.171-13.463,12.423-14.493l259.923-40.388v65.243s47.63-66.273,162.573-65.243c106.662,2.07,216.424,68.344,216.424,178.116l-1.03,214.344c0,112.873,61.093,126.336,61.093,126.336Z"/>
+          <path d="M1794.492,546.942c-33.137,63.173-130.361,188.402-284.642,188.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.436-267.164,289.949-266.124h3.101c72.494-1.04,139.798,24.855,190.539,65.233,76.635,63.173,37.278,124.265-39.348,138.768h-3.111c-36.238,5.171-71.445-16.573-83.867-50.74-21.754-61.102-55.931-109.772-101.49-102.521-1.04,0-3.101,0-4.141,1.03-88.018,26.925-61.093,210.213-34.167,274.416,40.378,97.34,183.162,147.116,338.493,3.177,10.362-9.322,25.895,3.101,19.674,14.493Z"/>
+          <path d="M2349.66,470.25c0,151.191-131.507,273.376-290.979,273.376s-290.989-122.185-290.989-273.376,129.446-273.376,289.959-273.376h3.101c159.463,0,288.909,122.185,288.909,273.376Zm-198.82,0c0-67.314-12.432-223.675-90.088-223.675h-4.141c-77.666,0-90.098,156.362-90.098,223.675s12.432,223.675,90.098,223.675h4.141c77.656,0,90.088-156.372,90.088-223.675Z"/>
+          <path d="M2782.269,394.655c-3.101,1.04-7.242,1.04-11.392,1.04-41.409,0-74.555-33.137-74.555-74.565,0-18.634,6.221-35.207,17.613-48.67-48.68-2.07-121.164,72.494-121.164,135.657v222.635c0,6.211-3.101,65.243,61.093,72.485,7.251,0,11.392,6.221,11.392,12.432v1.03c0,7.251-5.171,12.432-12.423,12.432h-318.945c-7.251,0-13.453-5.181-13.453-13.463,0-6.211,5.171-12.432,12.423-12.432,62.133-7.242,61.093-65.233,61.093-69.374V334.593s1.04-52.811-56.952-52.811c-8.282,0-15.533-5.171-16.564-13.463-1.04-8.282,5.171-15.533,12.423-16.564l259.913-40.388v66.273s57.992-78.696,162.573-65.233c117.014,14.493,113.913,176.036,26.925,182.247Z"/>
+          <path d="M3056.694,529.272c28.996,85.947,143.939,188.468,316.865,34.177,10.362-9.322,25.895,3.101,19.684,14.493-33.137,63.173-108.732,157.402-263.023,157.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.446-267.164,289.959-266.124h3.101c129.446-1.04,239.209,78.696,275.446,187.428,4.141,13.463-3.111,27.956-16.564,32.106l-334.478,106.652Zm144.97-92.159c8.282-3.111,13.472-12.423,11.392-20.714-17.594-82.837-57.992-172.925-118.044-162.573-1.04,0-3.111,1.03-4.141,1.03-73.525,18.644-67.314,162.583-48.68,231.957l159.472-49.7Z"/>
+        </svg>
+      </div>
+      <div class="brand-divider"></div>
+      <span class="brand-tag">Show Page</span>
+    </div>
+    <div class="topbar-meta">Internal · <strong>The Lion King · Fall 2026</strong></div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Fall 2026 · Production 3 of 5</div>
+      <h1 class="hero-title">The <em>Lion King</em></h1>
+      <p class="hero-tagline">A story of legacy, courage, and finding your place in the circle. Performed by the young artists of Encore on the Electric Theater stage.</p>
+      <div class="hero-dates">
+        <span class="label">Run</span>
+        <span class="range">October 15 – November 2, 2026</span>
+      </div>
+    </div>
+    <div class="hero-poster">
+      <div class="poster-title">THE<br/>LION<br/>KING</div>
+      <div class="poster-sub">Fall 2026</div>
+      <div class="poster-note">Poster TBD</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AT-A-GLANCE STRIP ========== -->
+<section class="glance">
+  <div class="glance-inner">
+    <div class="glance-stat">
+      <div class="glance-label">Auditions</div>
+      <div class="glance-value">Aug 15</div>
+      <div class="glance-sub">4:00 pm · Electric Theater</div>
+    </div>
+    <div class="glance-stat">
+      <div class="glance-label">Rehearsals begin</div>
+      <div class="glance-value">Sep 8</div>
+      <div class="glance-sub">5 weeks of build time</div>
+    </div>
+    <div class="glance-stat">
+      <div class="glance-label">Opening night</div>
+      <div class="glance-value">Oct 15</div>
+      <div class="glance-sub">7:30 pm curtain</div>
+    </div>
+    <div class="glance-stat">
+      <div class="glance-label">Cast size</div>
+      <div class="glance-value">32</div>
+      <div class="glance-sub">Plus 12-person crew</div>
+    </div>
+    <div class="glance-stat">
+      <div class="glance-label">Venue</div>
+      <div class="glance-value">Electric Theater</div>
+      <div class="glance-sub">St. George, UT</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MAIN LAYOUT ========== -->
+<div class="layout">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">Jump to</div>
+      <ul class="jump-list">
+        <li><a href="#mission">Show Mission <span class="arrow">↓</span></a></li>
+        <li><a href="#timeline">Production Timeline <span class="arrow">↓</span></a></li>
+        <li><a href="#performances">Performance Schedule <span class="arrow">↓</span></a></li>
+        <li><a href="#team">Team &amp; Cast <span class="arrow">↓</span></a></li>
+        <li><a href="#notes">Show Notes <span class="arrow">↓</span></a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">Resources</div>
+      <ul class="resources">
+        <li><a href="#" target="_blank">Script (PDF) <span class="arrow">↗</span></a></li>
+        <li><a href="#" target="_blank">Score &amp; Tracks <span class="arrow">↗</span></a></li>
+        <li><a href="#" target="_blank">Design Folder <span class="arrow">↗</span></a></li>
+        <li><a href="#" target="_blank">Production Calendar (BAND) <span class="arrow">↗</span></a></li>
+        <li><a href="#" target="_blank">Costume &amp; Props Notes <span class="arrow">↗</span></a></li>
+        <li><a href="#" target="_blank">Cast Contact Sheet <span class="arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">Related</div>
+      <ul class="resources">
+        <li><a href="/dashboard.html"> Team Dashboard <span class="arrow">↗</span></a></li>
+        <li><a href="#" target="_blank">Encore Director Handbook <span class="arrow">↗</span></a></li>
+        <li><a href="mailto:hello@encorepa.org">Questions? <span class="arrow">✉</span></a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <!-- ========== MISSION ========== -->
+    <section class="section" id="mission">
+      <div class="section-eyebrow">Why this show</div>
+      <h2 class="section-title">Show Mission</h2>
+      <p>Every show at Encore has a "why." It's the thing that connects the script to the lives of the young artists performing it. The mission below is written by the director and signed off by the Encore artistic team — it's the north star for every design choice, casting decision, and rehearsal note.</p>
+
+      <div class="mission-quote">
+        <em>The Lion King</em> is a show about what happens when we forget who we are — and what it takes to come home to ourselves. We're staging it for our young artists at a moment when many of them are wrestling with that exact question. This production is about <em>belonging, responsibility, and the quiet courage it takes to step into a role that scares you</em>.
+      </div>
+
+      <h3>The life skill we're teaching</h3>
+      <p>This production's S.T.A.G.E. focus is <strong>resilience under pressure</strong>. Every rehearsal, every note, every tech glitch is a chance to practice the skill of staying grounded when things don't go as planned. We want every cast and crew member to leave this show able to say: "I held it together when it mattered."</p>
+
+      <h3>What success looks like</h3>
+      <p>A sold-out closing weekend. A cast that's still close six months from now. Three young artists who took on a role bigger than they thought they could carry — and did. A creative team that finished the run with more energy than they started with.</p>
+    </section>
+
+    <!-- ========== TIMELINE ========== -->
+    <section class="section" id="timeline">
+      <div class="section-eyebrow">From audition to strike</div>
+      <h2 class="section-title">Production Timeline</h2>
+      <p>The full production arc, phase by phase. Bold items are all-team milestones. For week-by-week rehearsal detail, see the production calendar in BAND.</p>
+
+      <div class="timeline">
+
+        <div class="timeline-phase">
+          <span class="phase-label">Pre-Production</span>
+          <ul class="phase-list">
+            <li class="phase-item">
+              <span class="phase-date">Aug 15, 2026</span>
+              <span class="phase-event">Auditions<span class="meta">Saturday · 4:00 pm · Electric Theater · open call</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Aug 17, 2026</span>
+              <span class="phase-event">Callbacks<span class="meta">Monday · 6:00 pm · by invitation</span></span>
+            </li>
+            <li class="phase-item highlight">
+              <span class="phase-date">Aug 21, 2026</span>
+              <span class="phase-event">Cast announced<span class="meta">Posted to BAND + email · contracts go out</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Aug 24 – Sep 5</span>
+              <span class="phase-event">Pre-production<span class="meta">Design finalization, music prep, parent meeting</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="timeline-phase">
+          <span class="phase-label">Rehearsal</span>
+          <ul class="phase-list">
+            <li class="phase-item highlight">
+              <span class="phase-date">Sep 8, 2026</span>
+              <span class="phase-event">First rehearsal &amp; read-through<span class="meta">Full cast · 5:30 pm · Electric Theater rehearsal room</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Sep 8 – Oct 1</span>
+              <span class="phase-event">Music &amp; blocking rehearsals<span class="meta">Mon / Tue / Thu evenings</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Sep 22 – Oct 8</span>
+              <span class="phase-event">Choreography rehearsals<span class="meta">Added Saturday morning calls</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Oct 3, 2026</span>
+              <span class="phase-event">Designer run<span class="meta">First full stumble-through for design team</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="timeline-phase">
+          <span class="phase-label">Tech &amp; Production Week</span>
+          <ul class="phase-list">
+            <li class="phase-item highlight">
+              <span class="phase-date">Oct 6, 2026</span>
+              <span class="phase-event">Load-in &amp; tech week begins<span class="meta">Set, lights, sound · all-call evenings</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Oct 10, 2026</span>
+              <span class="phase-event">Wet tech / cue-to-cue</span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Oct 12, 2026</span>
+              <span class="phase-event">First dress rehearsal</span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Oct 14, 2026</span>
+              <span class="phase-event">Final dress / preview<span class="meta">Invited audience · families &amp; staff</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="timeline-phase">
+          <span class="phase-label">Performance Run</span>
+          <ul class="phase-list">
+            <li class="phase-item highlight">
+              <span class="phase-date">Oct 15, 2026</span>
+              <span class="phase-event">Opening Night<span class="meta">Thursday · 7:30 pm</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Oct 17, 2026</span>
+              <span class="phase-event">Sensory-friendly performance<span class="meta">Saturday matinee · 2:00 pm · house lights up, sound levels reduced</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Oct 23, 2026</span>
+              <span class="phase-event">ASL-interpreted performance<span class="meta">Friday · 7:30 pm</span></span>
+            </li>
+            <li class="phase-item highlight">
+              <span class="phase-date">Nov 2, 2026</span>
+              <span class="phase-event">Closing Night<span class="meta">Sunday · 7:30 pm</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="timeline-phase">
+          <span class="phase-label">Close-Out</span>
+          <ul class="phase-list">
+            <li class="phase-item highlight">
+              <span class="phase-date">Nov 3, 2026</span>
+              <span class="phase-event">Strike<span class="meta">All hands · 9:00 am – 4:00 pm · pizza provided</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Nov 7, 2026</span>
+              <span class="phase-event">Production debrief<span class="meta">Creative team only · what worked, what didn't, what we keep</span></span>
+            </li>
+            <li class="phase-item">
+              <span class="phase-date">Nov 14, 2026</span>
+              <span class="phase-event">Cast party<span class="meta">Open invite · location TBD</span></span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== PERFORMANCE SCHEDULE ========== -->
+    <section class="section" id="performances">
+      <div class="section-eyebrow">All curtains, all dates</div>
+      <h2 class="section-title">Performance Schedule</h2>
+      <p>Twelve total performances across three weekends. Accessibility performances (sensory-friendly and ASL-interpreted) are flagged below — the team should be especially aware of those calls.</p>
+
+      <table class="perf-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Day</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="perf-date">Oct 15</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Thursday</td>
+            <td><div class="perf-badges"><span class="perf-badge opening">Opening Night</span></div></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 16</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Friday</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 17</td>
+            <td class="perf-time">2:00 pm</td>
+            <td class="perf-day">Saturday</td>
+            <td><div class="perf-badges"><span class="perf-badge matinee">Matinee</span><span class="perf-badge sensory">Sensory-Friendly</span></div></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 17</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Saturday</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 22</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Thursday</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 23</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Friday</td>
+            <td><div class="perf-badges"><span class="perf-badge asl">ASL Interpreted</span></div></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 24</td>
+            <td class="perf-time">2:00 pm</td>
+            <td class="perf-day">Saturday</td>
+            <td><div class="perf-badges"><span class="perf-badge matinee">Matinee</span></div></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 24</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Saturday</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 29</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Thursday</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Oct 30</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Friday</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Nov 1</td>
+            <td class="perf-time">2:00 pm</td>
+            <td class="perf-day">Saturday</td>
+            <td><div class="perf-badges"><span class="perf-badge matinee">Matinee</span></div></td>
+          </tr>
+          <tr>
+            <td class="perf-date">Nov 2</td>
+            <td class="perf-time">7:30 pm</td>
+            <td class="perf-day">Sunday</td>
+            <td><div class="perf-badges"><span class="perf-badge closing">Closing Night</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot opening"></span> Opening night</div>
+        <div class="legend-item"><span class="legend-dot closing"></span> Closing night</div>
+        <div class="legend-item"><span class="legend-dot sensory"></span> Sensory-friendly · house lights up, reduced sound</div>
+        <div class="legend-item"><span class="legend-dot asl"></span> ASL interpreted · interpreter stage right</div>
+      </div>
+    </section>
+
+    <!-- ========== TEAM ========== -->
+    <section class="section" id="team">
+      <div class="section-eyebrow">Who's making this show</div>
+      <h2 class="section-title">Team &amp; Cast</h2>
+      <p>Click any name to see their portal page — bio, vision, role description, and contact info. Roles are pulled live from the Team Roster.</p>
+
+      <div class="team-group">
+        <div class="team-group-title">Creative Team</div>
+        <div class="team-grid">
+          <a href="/?director=sarah-jones-lion-king" class="team-card">
+            <div class="team-avatar">SJ</div>
+            <div class="team-info">
+              <div class="team-name">Sarah Jones</div>
+              <div class="team-role">Director</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">MR</div>
+            <div class="team-info">
+              <div class="team-name">Marcus Reyes</div>
+              <div class="team-role">Music Director</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">EP</div>
+            <div class="team-info">
+              <div class="team-name">Elena Park</div>
+              <div class="team-role">Choreographer</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">JT</div>
+            <div class="team-info">
+              <div class="team-name">Jordan Tran</div>
+              <div class="team-role">Vocal Director</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="team-group">
+        <div class="team-group-title">Production Team</div>
+        <div class="team-grid">
+          <a href="#" class="team-card">
+            <div class="team-avatar">DK</div>
+            <div class="team-info">
+              <div class="team-name">Devon Kim</div>
+              <div class="team-role">Stage Manager</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">AC</div>
+            <div class="team-info">
+              <div class="team-name">Avery Chen</div>
+              <div class="team-role">Technical Director</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">RM</div>
+            <div class="team-info">
+              <div class="team-name">Riley Martinez</div>
+              <div class="team-role">Lighting Designer</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">PN</div>
+            <div class="team-info">
+              <div class="team-name">Priya Nair</div>
+              <div class="team-role">Sound Designer</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">TH</div>
+            <div class="team-info">
+              <div class="team-name">Tomás Herrera</div>
+              <div class="team-role">Costume Designer</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">LB</div>
+            <div class="team-info">
+              <div class="team-name">Lena Brooks</div>
+              <div class="team-role">Props &amp; Set Dressing</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="team-group">
+        <div class="team-group-title">Principal Cast</div>
+        <div class="team-grid">
+          <a href="#" class="team-card">
+            <div class="team-avatar">EW</div>
+            <div class="team-info">
+              <div class="team-name">Emery Wallace</div>
+              <div class="team-role">Simba</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">NO</div>
+            <div class="team-info">
+              <div class="team-name">Naima Okafor</div>
+              <div class="team-role">Nala</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">CB</div>
+            <div class="team-info">
+              <div class="team-name">Caleb Bishop</div>
+              <div class="team-role">Mufasa</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">IS</div>
+            <div class="team-info">
+              <div class="team-name">Ibrahim Suleiman</div>
+              <div class="team-role">Scar</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">RV</div>
+            <div class="team-info">
+              <div class="team-name">Rosa Velasquez</div>
+              <div class="team-role">Rafiki</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">FW</div>
+            <div class="team-info">
+              <div class="team-name">Finn Walsh</div>
+              <div class="team-role">Timon</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">HJ</div>
+            <div class="team-info">
+              <div class="team-name">Hannah Johansen</div>
+              <div class="team-role">Pumbaa</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="#" class="team-card">
+            <div class="team-avatar">+</div>
+            <div class="team-info">
+              <div class="team-name">+ 25 Ensemble</div>
+              <div class="team-role">View full cast list</div>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== NOTES ========== -->
+    <section class="section" id="notes">
+      <div class="section-eyebrow">Production-specific intel</div>
+      <h2 class="section-title">Show Notes</h2>
+      <p>Things specific to this production that the whole team should be aware of. Update as you go — this lives in the Shows sheet and reflects in real time.</p>
+
+      <div class="notes-callout">
+        <p><strong>Sensory performance prep:</strong> Lighting cues that flash or strobe (Act II opening, "Be Prepared," final battle) must be flagged for the Oct 17 matinee and softened per the sensory-friendly guidelines. Coordinate with Riley by Oct 6.</p>
+        <p><strong>ASL performance:</strong> Interpreter joining for the Oct 23 show. Stage-right placement, please leave the SR proscenium clear for sightlines. Pre-show meet &amp; greet with the interpreter at 6:30 pm.</p>
+        <p><strong>Costume note:</strong> Tomás is sourcing the Mufasa mantle from a partner organization in Salt Lake. Final fitting is Sep 28.</p>
+        <p><strong>Parent meeting:</strong> Saturday Sep 5 at 10 am. Sarah, Marcus, and Devon attending. Parent info packet goes out by Aug 28.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3645.525 744.452" aria-label="Encore">
+      <path d="M3625.374,637.942c0,53.14-26.564,79.693-79.693,79.693-56.409,0-84.608-26.553-84.608-79.693s28.199-79.705,84.608-79.705c53.129,0,79.693,26.576,79.693,79.705Zm-109.548-137.771c-12.967-86.288-23.803-154.301-32.432-204.001-8.66-49.71-15.691-88.368-21.079-115.983-5.418-27.606-9.192-48.32-11.354-62.133-2.161-13.803-3.226-27.965-3.226-42.459,0-50.39,32.95-75.595,98.895-75.595s98.895,25.205,98.895,75.595c0,14.493-1.081,28.656-3.226,42.459-2.192,13.813-6.24,34.527-12.175,62.133-5.936,27.616-14.337,66.273-25.127,115.983-10.821,49.7-24.32,117.714-40.529,204.001h-48.641Z"/>
+      <path d="M217.454,529.272c29.006,85.947,143.939,188.468,316.874,34.177,10.352-9.322,25.885,3.101,19.674,14.493-33.137,63.173-108.722,157.402-263.023,157.402C131.507,735.344,0,616.26,0,469.21,0,321.13,129.446,202.046,289.949,203.086h3.111c129.436-1.04,239.199,78.696,275.436,187.428,4.151,13.463-3.101,27.956-16.564,32.106l-334.478,106.652Zm144.979-92.159c8.282-3.111,13.463-12.423,11.392-20.714-17.604-82.837-57.992-172.925-118.054-162.573-1.03,0-3.111,1.03-4.141,1.03-73.525,18.644-67.304,162.583-48.67,231.957l159.472-49.7Z"/>
+      <path d="M1250.416,730.163c-76.626,26.925-258.883,36.247-258.883-164.644v-178.116c0-32.097-13.463-92.159-79.736-98.37-52.811-4.141-100.441,50.74-100.441,97.34v244.38c0,6.211-3.111,65.243,61.093,71.454,5.181,1.03,11.392,6.211,11.392,13.463s-5.181,13.463-12.432,13.463h-318.935c-7.251,0-13.463-6.211-13.463-13.463s5.171-12.432,12.423-13.463c36.247-4.141,60.062-30.026,61.102-69.384V334.593s1.03-54.881-56.961-52.811c-9.312,0-16.564-6.211-16.564-15.533,0-7.242,5.171-13.463,12.423-14.493l259.923-40.388v65.243s47.63-66.273,162.573-65.243c106.662,2.07,216.424,68.344,216.424,178.116l-1.03,214.344c0,112.873,61.093,126.336,61.093,126.336Z"/>
+      <path d="M1794.492,546.942c-33.137,63.173-130.361,188.402-284.642,188.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.436-267.164,289.949-266.124h3.101c72.494-1.04,139.798,24.855,190.539,65.233,76.635,63.173,37.278,124.265-39.348,138.768h-3.111c-36.238,5.171-71.445-16.573-83.867-50.74-21.754-61.102-55.931-109.772-101.49-102.521-1.04,0-3.101,0-4.141,1.03-88.018,26.925-61.093,210.213-34.167,274.416,40.378,97.34,183.162,147.116,338.493,3.177,10.362-9.322,25.895,3.101,19.674,14.493Z"/>
+      <path d="M2349.66,470.25c0,151.191-131.507,273.376-290.979,273.376s-290.989-122.185-290.989-273.376,129.446-273.376,289.959-273.376h3.101c159.463,0,288.909,122.185,288.909,273.376Zm-198.82,0c0-67.314-12.432-223.675-90.088-223.675h-4.141c-77.666,0-90.098,156.362-90.098,223.675s12.432,223.675,90.098,223.675h4.141c77.656,0,90.088-156.372,90.088-223.675Z"/>
+      <path d="M2782.269,394.655c-3.101,1.04-7.242,1.04-11.392,1.04-41.409,0-74.555-33.137-74.555-74.565,0-18.634,6.221-35.207,17.613-48.67-48.68-2.07-121.164,72.494-121.164,135.657v222.635c0,6.211-3.101,65.243,61.093,72.485,7.251,0,11.392,6.221,11.392,12.432v1.03c0,7.251-5.171,12.432-12.423,12.432h-318.945c-7.251,0-13.453-5.181-13.453-13.463,0-6.211,5.171-12.432,12.423-12.432,62.133-7.242,61.093-65.233,61.093-69.374V334.593s1.04-52.811-56.952-52.811c-8.282,0-15.533-5.171-16.564-13.463-1.04-8.282,5.171-15.533,12.423-16.564l259.913-40.388v66.273s57.992-78.696,162.573-65.233c117.014,14.493,113.913,176.036,26.925,182.247Z"/>
+      <path d="M3056.694,529.272c28.996,85.947,143.939,188.468,316.865,34.177,10.362-9.322,25.895,3.101,19.684,14.493-33.137,63.173-108.732,157.402-263.023,157.402-159.472,0-290.989-119.084-290.989-266.134,0-148.08,129.446-267.164,289.959-266.124h3.101c129.446-1.04,239.209,78.696,275.446,187.428,4.141,13.463-3.111,27.956-16.564,32.106l-334.478,106.652Zm144.97-92.159c8.282-3.111,13.472-12.423,11.392-20.714-17.594-82.837-57.992-172.925-118.044-162.573-1.04,0-3.111,1.03-4.141,1.03-73.525,18.644-67.314,162.583-48.68,231.957l159.472-49.7Z"/>
+    </svg>
+  </div>
+  <div class="brand-footer-sub">Performing Arts</div>
+  <div class="footer-tagline">We teach life skills through stage skills.</div>
+  <p>Questions? Reach out to us at <a href="mailto:hello@encorepa.org">hello@encorepa.org</a> or visit <a href="https://encorepa.org" target="_blank">encorepa.org</a>.</p>
+  <div class="footer-fineprint">Internal Show Page · The Lion King · Fall 2026</div>
+</footer>
+
+<script src="/nav.js" defer></script>
+
+</body>
+</html>

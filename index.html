@@ -281,21 +281,21 @@
       <div class="brand-divider"></div>
       <span class="brand-tag">Director Onboarding</span>
     </div>
-    <div class="topbar-meta"><strong data-personalize="full-name">Sarah Jones</strong> · <span data-personalize="show">The Lion King</span></div>
+    <div class="topbar-meta"><strong>Sarah Jones</strong> · The Lion King</div>
   </div>
 </header>
 
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Welcome to the team</div>
-    <h1 class="hero-title">Hello, <em data-personalize="first-name">Sarah</em>.<br />Let's get you ready.</h1>
+    <h1 class="hero-title">Hello, <em>Sarah</em>.<br />Let's get you ready.</h1>
     <p class="hero-tagline">We teach life skills through stage skills.</p>
     <p class="hero-subtitle">Your home for everything you need to direct at Encore. Read through who we are and how we work, complete your required onboarding, and tell us about yourself and your vision for the show. Bookmark this page — it's yours.</p>
     <div class="hero-show-card">
-      <div class="hero-show-poster" data-personalize="show-initial">L</div>
+      <div class="hero-show-poster">L</div>
       <div class="hero-show-info">
         <div class="label">Your Show</div>
-        <div class="name" data-personalize="show">The Lion King</div>
+        <div class="name">The Lion King</div>
         <div class="dates">Signature Show · Electric Theater</div>
       </div>
     </div>
@@ -1175,7 +1175,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="vision">Director's Vision for <span data-personalize="show">The Lion King</span></label>
+          <label class="form-label" for="vision">Director's Vision for The Lion King</label>
           <textarea class="form-textarea" id="vision" style="min-height: 200px;" placeholder="What kind of show are you making? What do you want the audience to feel? What's the core idea you want every young artist and crew member to hold onto when things get hard?"></textarea>
           <p class="form-help">This becomes the north star for your whole production team. Be specific. Be honest. Be ambitious. Tie it back to the life skills you'll be developing alongside the show.</p>
         </div>
@@ -1202,7 +1202,7 @@
   <div class="brand-footer-sub">Performing Arts</div>
   <div class="footer-tagline">We teach life skills through stage skills.</div>
   <p>Questions? Reach out to us at <a href="mailto:hello@encorepa.org">hello@encorepa.org</a> or visit <a href="https://encorepa.org" target="_blank">encorepa.org</a>.</p>
-  <div class="footer-fineprint">A Private Page for <span data-personalize="full-name">Sarah Jones</span></div>
+  <div class="footer-fineprint">A Private Page for Sarah Jones</div>
 </footer>
 
 <div class="lightbox-bg" id="trainingLightbox" role="dialog" aria-modal="true" aria-label="Child Safety Training">
@@ -1241,63 +1241,6 @@
   })();
 </script>
 
-<script>
-  // ─────────────────────────────────────────────────────────
-  // PERSONALIZE THE PAGE WITH DIRECTOR DATA FROM THE SHEET
-  // ─────────────────────────────────────────────────────────
-  // Reads the ?director=... URL parameter and fetches that
-  // director's row from the Roster Sheet via Netlify function.
-  // If no parameter is present, the page shows defaults.
-  (async function loadDirector() {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('director');
-    if (!slug) return;
-
-    try {
-      const response = await fetch(
-        '/.netlify/functions/get-director?slug=' + encodeURIComponent(slug)
-      );
-
-      if (!response.ok) {
-        console.error('Failed to load director:', await response.text());
-        return;
-      }
-
-      const director = await response.json();
-
-      // Compute display values
-      const fullName = director['Name'] || '';
-      const firstName = fullName.split(' ')[0] || '';
-      const show = director['Show'] || '';
-
-      // Compute show initial — skip leading "The"
-      let showForInitial = show;
-      if (showForInitial.toLowerCase().startsWith('the ')) {
-        showForInitial = showForInitial.substring(4);
-      }
-      const showInitial = (showForInitial.charAt(0) || '').toUpperCase();
-
-      // Apply to all elements with matching data-personalize attribute
-      const apply = (key, value) => {
-        document.querySelectorAll('[data-personalize="' + key + '"]').forEach(el => {
-          el.textContent = value;
-        });
-      };
-
-      apply('full-name', fullName);
-      apply('first-name', firstName);
-      apply('show', show);
-      apply('show-initial', showInitial);
-
-      // Update browser tab title
-      if (firstName && show) {
-        document.title = 'Welcome to Encore, ' + firstName + ' — Director, ' + show;
-      }
-    } catch (err) {
-      console.error('Director load error:', err);
-    }
-  })();
-</script>
-
+<script src="/nav.js" defer></script>
 </body>
 </html>
